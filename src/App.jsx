@@ -445,17 +445,17 @@ export default function Portfolio() {
         <div className="max-w-7xl mx-auto">
           <SectionTitle title="Misión Digital" subtitle="Sobre el Autor" />
           
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 md:gap-24 items-center w-full min-w-0">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <div className="glass-card p-12 rounded-[2rem] border-white/10 relative overflow-hidden group">
+              <div className="glass-card p-6 md:p-12 rounded-[2rem] border-white/10 relative overflow-hidden group w-full min-w-0">
                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
                   <Code2 className="w-32 h-32" />
                 </div>
-                <p className="text-2xl md:text-3xl font-bold leading-snug mb-10">
+                <p className="text-2xl md:text-3xl font-bold leading-snug mb-10 break-words">
                   Me especializo en crear <span className="text-purple-500">interfaces hiper-modernas</span> que no solo lucen bien, sino que están optimizadas para el rendimiento máximo.
                 </p>
                 <div className="space-y-6">
@@ -467,8 +467,8 @@ export default function Portfolio() {
                     <div key={i} className="flex gap-6 items-start">
                       <div className="mt-1 w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_#9333ea]" />
                       <div>
-                        <h4 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1">{item.label}</h4>
-                        <p className="text-gray-300 font-medium">{item.text}</p>
+                        <h4 className="text-xs font-black uppercase tracking-widest text-gray-500 mb-1 break-words">{item.label}</h4>
+                        <p className="text-gray-300 font-medium break-words">{item.text}</p>
                       </div>
                     </div>
                   ))}
@@ -585,8 +585,8 @@ export default function Portfolio() {
                     </div>
                   </div>
 
-                  <div className="p-12 flex-grow">
-                    <h4 className="text-3xl font-black mb-6 group-hover:text-purple-400 transition-colors">
+                  <div className="p-6 md:p-12 flex-grow w-full min-w-0">
+                    <h4 className="text-2xl md:text-3xl font-black mb-6 group-hover:text-purple-400 transition-colors break-words">
                       {project.title}
                     </h4>
                     <p className="text-gray-400 font-medium leading-relaxed mb-10">
@@ -638,7 +638,7 @@ export default function Portfolio() {
               <MessageSquare className="w-10 h-10 text-purple-400" />
             </motion.div>
             
-            <h3 className="text-4xl sm:text-5xl md:text-8xl font-black mb-10 tracking-tighter uppercase">
+            <h3 className="text-4xl sm:text-5xl md:text-8xl font-black mb-10 tracking-tighter uppercase break-words">
               ¿Iniciamos la <br className="hidden sm:block" /> <span className="text-gradient">Conexión?</span>
             </h3>
             
