@@ -212,7 +212,7 @@ const projects = [
     color: 'from-indigo-500/40 to-purple-500/40',
     icon: <Terminal className="w-6 h-6 text-indigo-400" />,
     image: '/assets/ai_workspace.png',
-    demoUrl: '#'
+    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/ai-workspace'
   },
   {
     title: 'SaaS Analytics',
@@ -221,7 +221,7 @@ const projects = [
     color: 'from-emerald-500/40 to-teal-500/40',
     icon: <Activity className="w-6 h-6 text-emerald-400" />,
     image: '/assets/saas_analytics.png',
-    demoUrl: '#'
+    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/saas-analytics'
   },
   {
     title: 'Web3 Dashboard',
@@ -230,7 +230,7 @@ const projects = [
     color: 'from-cyan-500/40 to-blue-500/40',
     icon: <Globe className="w-6 h-6 text-cyan-400" />,
     image: '/assets/web3_dashboard.png',
-    demoUrl: '#'
+    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/web3-dashboard'
   },
   {
     title: 'DevTools Landing',
@@ -239,7 +239,7 @@ const projects = [
     color: 'from-pink-500/40 to-rose-500/40',
     icon: <Code2 className="w-6 h-6 text-pink-400" />,
     image: '/assets/devtools_landing.png',
-    demoUrl: '#'
+    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/devtools-landing'
   }
 ];
 
