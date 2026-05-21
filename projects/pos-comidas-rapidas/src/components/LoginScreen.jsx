@@ -10,6 +10,14 @@ const LoginScreen = ({ staff, onLogin, settings }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    
+    // Demo bypass
+    if (user === 'admin' && pass === 'admin') {
+        const admin = staff.find(s => s.role === 'Gerente' || s.role === 'Administrador') || staff[0];
+        onLogin(admin, true);
+        return;
+    }
+
     if (mode === 'admin') {
       if (user === 'admin' && pass === settings.masterPin) {
         // Find first manager or just the first staff
@@ -90,6 +98,14 @@ const LoginScreen = ({ staff, onLogin, settings }) => {
             Ingresar al Sistema
           </button>
         </form>
+
+        <div className="mt-6 bg-accent-primary/10 border border-accent-primary/20 p-3 rounded-xl w-full text-center">
+          <p className="text-accent-primary text-[10px] font-bold uppercase tracking-widest mb-1">Cuentas de Demostración</p>
+          <div className="flex justify-center gap-4 text-xs">
+            <span className="text-text-tertiary">Usr: <b className="text-white">admin</b></span>
+            <span className="text-text-tertiary">Clave: <b className="text-white">admin</b></span>
+          </div>
+        </div>
 
         <p className="text-[10px] text-text-tertiary mt-8 uppercase font-medium tracking-tighter">
           v2.4.0 • Enterprise Edition • {settings.restaurantName || 'FastPOS'}

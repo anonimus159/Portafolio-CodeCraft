@@ -25,24 +25,18 @@ export default function Login() {
     setLoading(true);
 
     try {
-      const res = await fetch('/api/auth/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
-
-      const data = await res.json();
-      if (data.success) {
-        login(data.user, data.permissions);
+      // Demo bypass for login
+      if (username === 'admin' && password === 'admin') {
+        const mockUser = { id: 1, username: 'admin', name: 'Admin Demo', role: 'admin' };
+        const mockPermissions = ['manage_users', 'manage_inventory', 'manage_sales'];
+        login(mockUser, mockPermissions);
         useAuthStore.getState().setLoading(true);
         navigate('/');
         setTimeout(() => {
           useAuthStore.getState().setLoading(false);
         }, 1500);
       } else {
-        setError(data.message || 'Error al iniciar sesión');
+        setError('Credenciales inválidas. Usa admin / admin');
       }
     } catch (err) {
       setError('Error de conexión con el servidor');
@@ -143,6 +137,10 @@ export default function Login() {
             </div>
             <h1 className="text-4xl font-bold text-white tracking-tight">Acceso <span className="text-amber-500">Corporativo</span></h1>
             <p className="text-gray-500 mt-3 text-sm font-medium">Ingresa tus credenciales de administrador</p>
+            <div className="mt-4 bg-amber-500/10 border border-amber-500/20 p-3 rounded-xl w-full text-center">
+              <p className="text-amber-500 text-xs font-bold uppercase tracking-wider mb-1">Credenciales de Acceso</p>
+              <p className="text-white text-sm">Usuario: <span className="font-mono text-amber-400">admin</span> &bull; Clave: <span className="font-mono text-amber-400">admin</span></p>
+            </div>
           </div>
 
           {error && (

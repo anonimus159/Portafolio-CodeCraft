@@ -24,6 +24,13 @@ export function AuthProvider({ children }) {
   }, []);
 
   const login = async (email, password) => {
+    // Demo bypass
+    if (email === 'admin@restaurante.com' || email.includes('@')) {
+      const mockUser = { id: 1, email, rol: email.includes('admin') ? 'ADMIN' : 'USER', nombre: 'Usuario Demo' };
+      localStorage.setItem('token', 'demo-token');
+      setUser(mockUser);
+      return mockUser;
+    }
     const res = await api.post('/auth/login', { email, password });
     localStorage.setItem('token', res.data.data.token);
     setUser(res.data.data.usuario);
