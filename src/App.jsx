@@ -211,7 +211,7 @@ const projects = [
     tech: ['Next.js', 'Tailwind', 'Zustand', 'Motion'],
     color: 'from-indigo-500/40 to-purple-500/40',
     icon: <Terminal className="w-6 h-6 text-indigo-400" />,
-    image: '/assets/portfolio.png',
+    image: '/assets/ai_workspace.png',
     demoUrl: '#'
   },
   {
@@ -220,7 +220,7 @@ const projects = [
     tech: ['React', 'Next.js', 'Recharts'],
     color: 'from-emerald-500/40 to-teal-500/40',
     icon: <Activity className="w-6 h-6 text-emerald-400" />,
-    image: '/assets/dashboard.png',
+    image: '/assets/saas_analytics.png',
     demoUrl: '#'
   },
   {
@@ -229,7 +229,7 @@ const projects = [
     tech: ['Next.js', 'Web3', 'Tailwind'],
     color: 'from-cyan-500/40 to-blue-500/40',
     icon: <Globe className="w-6 h-6 text-cyan-400" />,
-    image: '/assets/pos.png',
+    image: '/assets/web3_dashboard.png',
     demoUrl: '#'
   },
   {
@@ -238,7 +238,7 @@ const projects = [
     tech: ['React', 'Tailwind', 'Framer Motion'],
     color: 'from-pink-500/40 to-rose-500/40',
     icon: <Code2 className="w-6 h-6 text-pink-400" />,
-    image: '/assets/portfolio.png',
+    image: '/assets/devtools_landing.png',
     demoUrl: '#'
   }
 ];
