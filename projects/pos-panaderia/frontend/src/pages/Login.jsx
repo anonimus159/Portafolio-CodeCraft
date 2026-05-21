@@ -27,14 +27,11 @@ export default function Login() {
     try {
       // Demo bypass for login
       if (username === 'admin' && password === 'admin') {
-        const mockUser = { id: 1, username: 'admin', name: 'Admin Demo', role: 'admin' };
-        const mockPermissions = ['manage_users', 'manage_inventory', 'manage_sales'];
+        const mockUser = { id: 1, username: 'admin', name: 'Admin Demo', role: 'ADMIN' };
+        const mockPermissions = ['dashboard', 'mesas', 'pedidos', 'cocina', 'inventario', 'ventas', 'finanzas', 'reportes', 'usuarios', 'configuracion'];
         login(mockUser, mockPermissions);
-        useAuthStore.getState().setLoading(true);
         navigate('/');
-        setTimeout(() => {
-          useAuthStore.getState().setLoading(false);
-        }, 1500);
+        return;
       } else {
         setError('Credenciales inválidas. Usa admin / admin');
       }
@@ -154,6 +151,11 @@ export default function Login() {
             </motion.div>
           )}
 
+          <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800 mb-4">
+            <p className="font-semibold mb-1">Credenciales de Demo:</p>
+            <p>Email: <b>admin@demo.com</b></p>
+            <p>Contraseña: <b>123456</b></p>
+          </div>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="space-y-2">
               <label className="text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 ml-1">Usuario del Sistema</label>

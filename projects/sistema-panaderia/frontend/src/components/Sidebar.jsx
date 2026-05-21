@@ -90,9 +90,8 @@ export default function Sidebar() {
 
   return (
     <aside
-      style={{ width: 'var(--sidebar-w)', flexShrink: 0 }}
       className="flex flex-col h-screen sticky top-0 z-40 border-r border-[rgba(255,255,255,0.06)]"
-      style={{ width: '260px', background: '#0e0e10' }}
+      style={{ width: '260px', flexShrink: 0, background: '#0e0e10' }}
     >
       {/* Logo */}
       <div className="px-5 pt-5 pb-4">

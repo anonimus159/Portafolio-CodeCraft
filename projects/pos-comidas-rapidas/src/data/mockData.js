@@ -58,12 +58,34 @@ export const PRODUCTS = [
 export const TABLES = Array.from({ length: 12 }, (_, i) => ({
   id: i + 1,
   name: `Mesa ${i + 1}`,
-  status: 'free',
+  status: (i === 0) ? 'occupied' : (i === 1) ? 'pending' : 'free',
   capacity: 4,
   currentOrder: null
 }));
 
-export const INITIAL_ORDERS = [];
+export const INITIAL_ORDERS = [
+  {
+    id: 'ORD-1001',
+    customer: { id: 1, name: 'Carlos Perez' },
+    items: [
+      { id: 1, name: 'Hamb. Clásica', price: 15000, quantity: 2 },
+      { id: 5, name: 'Coca Cola 400ml', price: 4500, quantity: 2 }
+    ],
+    total: 39000 * 1.08,
+    status: 'pending',
+    timestamp: new Date().toISOString()
+  },
+  {
+    id: 'ORD-1002',
+    customer: null,
+    items: [
+      { id: 7, name: 'Combo Mega', price: 35000, quantity: 1 }
+    ],
+    total: 35000 * 1.08,
+    status: 'ready',
+    timestamp: new Date().toISOString()
+  }
+];
 
 export const INITIAL_INVENTORY = [
   { id: 'INV-001', item: 'Carne Angus',     category: 'Carnes',    stock: 45,  unit: 'unidades', status: 'low',      cost: 2500  },

@@ -93,6 +93,11 @@ export default function Login() {
             <p style={{ fontSize: 14, color: '#71717a' }}>Ingresa tus credenciales para continuar</p>
           </div>
 
+          <div style={{ padding: '12px', background: '#f0f9ff', border: '1px solid #bae6fd', borderRadius: '8px', marginBottom: '16px', color: '#0369a1', fontSize: '14px' }}>
+            <p style={{ margin: '0 0 4px', fontWeight: 'bold' }}>Credenciales de Demo:</p>
+            <p style={{ margin: '0' }}>Email: <b>admin@demo.com</b></p>
+            <p style={{ margin: '0' }}>Contraseña: <b>123456</b></p>
+          </div>
           <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {/* Error */}
             <AnimatePresence>

@@ -69,6 +69,12 @@ const LoginScreen = ({ staff, onLogin, settings }) => {
           </button>
         </div>
 
+        <div className="bg-blue-900/30 border border-blue-500/30 rounded-lg p-3 text-sm text-blue-200 mb-4 text-left">
+          <p className="font-semibold mb-1 text-blue-100">Credenciales de Demo (Admin):</p>
+          <p>Usuario: <b>admin</b></p>
+          <p>Contraseña: <b>admin</b></p>
+        </div>
+
         <form onSubmit={handleSubmit} className="w-full space-y-4">
           <div className="space-y-2 text-left">
             <label className="text-[10px] font-bold text-text-tertiary uppercase tracking-widest px-1">Usuario</label>

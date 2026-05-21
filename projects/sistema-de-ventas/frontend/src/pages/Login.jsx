@@ -69,6 +69,11 @@ export default function Login() {
                         </div>
                     )}
 
+                    <div className="bg-blue-50/50 border border-blue-100 rounded-lg p-3 text-sm text-blue-800 mb-4">
+                        <p className="font-semibold mb-1">Credenciales de Demo:</p>
+                        <p>Email: <b>admin@pos.com</b></p>
+                        <p>Contraseña: <b>123456</b></p>
+                    </div>
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div className="relative">
                             <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>

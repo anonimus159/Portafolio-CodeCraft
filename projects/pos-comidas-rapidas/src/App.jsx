@@ -123,12 +123,14 @@ function App() {
     try {
       const saved = localStorage.getItem('fastpos_tables');
       const loadedTables = saved ? JSON.parse(saved) : TABLES;
-      // Force all tables to free for this request
-      return loadedTables.map(t => ({ ...t, status: 'free' }));
-    } catch { return TABLES.map(t => ({ ...t, status: 'free' })); }
+      return loadedTables;
+    } catch { return TABLES; }
   });
   const [orders,        setOrders]        = useState(() => {
-    return []; // Clear all orders for a clean slate
+    try {
+      const saved = localStorage.getItem('fastpos_orders');
+      return saved ? JSON.parse(saved) : INITIAL_ORDERS;
+    } catch { return INITIAL_ORDERS; }
   });
 
   // ── Global Settings State ─────────────────────────────
@@ -144,11 +146,7 @@ function App() {
   const [clientId] = useState(() => Math.random().toString(36).substring(7));
   const [currentUser, setCurrentUser] = useState(null); // Force login on start
 
-  // FORCE RESET TABLES ON START (as requested)
-  useEffect(() => {
-    setTables(prev => prev.map(t => ({ ...t, status: 'free' })));
-    setOrders([]);
-  }, []);
+  // Retaining tables and orders from mockData / localStorage
 
   const handleOpenModal = (data) => {
     setModal({ ...data, isOpen: true });

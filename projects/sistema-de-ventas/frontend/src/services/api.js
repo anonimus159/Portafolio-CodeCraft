@@ -125,4 +125,5 @@ const api = {
     }
 };
 
+import './mock.js';
 export default api;
