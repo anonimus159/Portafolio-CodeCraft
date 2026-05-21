@@ -206,14 +206,41 @@ const projects = [
     demoUrl: '/demos/sistema-de-ventas/'
   },
   {
-    title: 'Admin Panadería',
-    description: 'Plataforma empresarial de control y administración para cadenas de panaderías. Modo oscuro nativo.',
-    tech: ['React', 'PostgreSQL', 'Express'],
-    color: 'from-pink-500/40 to-purple-500/40',
-    icon: <Layers className="w-6 h-6 text-pink-400" />,
-    image: '/assets/sistema_panaderia.png',
-    demoUrl: '/demos/sistema-panaderia/'
+    title: 'AI Workspace',
+    description: 'Entorno de trabajo colaborativo impulsado por IA con diseño minimalista, modo oscuro nativo y atajos de teclado.',
+    tech: ['Next.js', 'Tailwind', 'Zustand', 'Motion'],
+    color: 'from-indigo-500/40 to-purple-500/40',
+    icon: <Terminal className="w-6 h-6 text-indigo-400" />,
+    image: '/assets/portfolio.png',
+    demoUrl: '#'
   },
+  {
+    title: 'SaaS Analytics',
+    description: 'Plataforma B2B de analíticas con gráficos interactivos y diseño premium enfocado en conversión.',
+    tech: ['React', 'Next.js', 'Recharts'],
+    color: 'from-emerald-500/40 to-teal-500/40',
+    icon: <Activity className="w-6 h-6 text-emerald-400" />,
+    image: '/assets/dashboard.png',
+    demoUrl: '#'
+  },
+  {
+    title: 'Web3 Dashboard',
+    description: 'Panel de control descentralizado con visualización de criptoactivos en tiempo real y estética moderna.',
+    tech: ['Next.js', 'Web3', 'Tailwind'],
+    color: 'from-cyan-500/40 to-blue-500/40',
+    icon: <Globe className="w-6 h-6 text-cyan-400" />,
+    image: '/assets/pos.png',
+    demoUrl: '#'
+  },
+  {
+    title: 'DevTools Landing',
+    description: 'Landing page de alta conversión para herramientas de desarrollo con animaciones cinemáticas y estilo lineal.',
+    tech: ['React', 'Tailwind', 'Framer Motion'],
+    color: 'from-pink-500/40 to-rose-500/40',
+    icon: <Code2 className="w-6 h-6 text-pink-400" />,
+    image: '/assets/portfolio.png',
+    demoUrl: '#'
+  }
 ];
 
 const skills = [
