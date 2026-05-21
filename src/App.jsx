@@ -221,7 +221,7 @@ const projects = [
     color: 'from-emerald-500/40 to-teal-500/40',
     icon: <Activity className="w-6 h-6 text-emerald-400" />,
     image: '/assets/saas_analytics.png',
-    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/saas-analytics'
+    demoUrl: 'https://portafolio-code-craft-xpid.vercel.app/'
   },
   {
     title: 'Web3 Dashboard',
