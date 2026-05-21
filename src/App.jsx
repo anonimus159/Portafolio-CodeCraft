@@ -137,8 +137,9 @@ const CyberText = ({ text, delay = 0 }) => {
   return <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay }}>{displayText}</motion.span>;
 };
 
-const GlowButton = ({ children, className = "", primary = false }) => (
+const GlowButton = ({ children, className = "", primary = false, onClick }) => (
   <motion.button
+    onClick={onClick}
     whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(147, 51, 234, 0.5)" }}
     whileTap={{ scale: 0.95 }}
     className={`relative px-8 py-4 rounded-xl font-bold overflow-hidden group ${className} ${
@@ -407,11 +408,11 @@ export default function Portfolio() {
             transition={{ delay: 0.8 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 w-full sm:w-auto"
           >
-            <GlowButton primary className="w-full sm:w-auto">
+            <GlowButton primary className="w-full sm:w-auto" onClick={() => document.getElementById('proyectos')?.scrollIntoView({ behavior: 'smooth' })}>
               Explorar Proyectos <ChevronRight className="w-4 h-4" />
             </GlowButton>
-            <GlowButton className="w-full sm:w-auto">
-              <MessageSquare className="w-4 h-4" /> Iniciar Sesión
+            <GlowButton className="w-full sm:w-auto" onClick={() => window.open('https://wa.me/573232313781?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo.', '_blank')}>
+              <MessageSquare className="w-4 h-4" /> Contactar
             </GlowButton>
           </motion.div>
         </div>
@@ -647,30 +648,12 @@ export default function Portfolio() {
               El futuro no se espera, se construye.
             </p>
 
-            <div className="flex flex-wrap justify-center gap-10">
-              {[
-                { icon: <FaInstagram />, label: 'Instagram', color: 'hover:text-pink-500' },
-                { icon: <FaTwitter />, label: 'Twitter', color: 'hover:text-blue-400' },
-                { icon: <FaLinkedin />, label: 'LinkedIn', color: 'hover:text-blue-600' },
-                { icon: <FaGithub />, label: 'GitHub', color: 'hover:text-white' }
-              ].map((social, i) => (
-                <motion.a
-                  key={i}
-                  href="#"
-                  whileHover={{ scale: 1.2, y: -5 }}
-                  className={`text-4xl text-gray-500 transition-colors ${social.color}`}
-                  title={social.label}
-                >
-                  {social.icon}
-                </motion.a>
-              ))}
-            </div>
-
             <motion.button 
+              onClick={() => window.open('https://wa.me/573232313781?text=Hola,%20vi%20tu%20portafolio%20y%20me%20interesa%20trabajar%20contigo.', '_blank')}
               whileHover={{ scale: 1.05 }}
-              className="mt-16 md:mt-20 px-8 sm:px-16 py-4 sm:py-6 w-full sm:w-auto rounded-3xl bg-gradient-to-r from-purple-600 to-blue-600 font-black uppercase tracking-[0.3em] text-xs shadow-[0_0_50px_rgba(147,51,234,0.3)] active:scale-95"
+              className="mt-12 md:mt-16 px-8 sm:px-16 py-4 sm:py-6 w-full sm:w-auto rounded-3xl bg-gradient-to-r from-green-500 to-emerald-600 font-black uppercase tracking-[0.3em] text-xs shadow-[0_0_50px_rgba(16,185,129,0.3)] active:scale-95"
             >
-              Enviar Mensaje
+              Contactar por WhatsApp
             </motion.button>
           </div>
         </motion.div>
