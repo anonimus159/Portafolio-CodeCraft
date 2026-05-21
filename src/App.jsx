@@ -146,7 +146,7 @@ const GlowButton = ({ children, className = "", primary = false }) => (
     }`}
   >
     <div className="absolute inset-0 bg-gradient-to-r from-purple-600/20 to-blue-600/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500" />
-    <span className="relative z-10 flex items-center gap-2">{children}</span>
+    <span className="relative z-10 flex items-center justify-center gap-2 w-full">{children}</span>
   </motion.button>
 );
 
@@ -288,9 +288,9 @@ export default function Portfolio() {
       <header 
         className={`fixed top-0 left-0 w-full z-[150] transition-all duration-700 ${
           isScrolled ? 'py-4 glass border-b border-white/5' : 'py-8 bg-transparent'
-        }`}
+        } ${mobileMenuOpen ? 'glass border-b border-white/5 bg-[#050816]/90 backdrop-blur-xl' : ''}`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative">
           <motion.div 
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
@@ -331,6 +331,34 @@ export default function Portfolio() {
             {mobileMenuOpen ? <X /> : <Menu />}
           </button>
         </div>
+
+        {/* Mobile Menu */}
+        <AnimatePresence>
+          {mobileMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden glass border-t border-white/5 overflow-hidden absolute top-full left-0 w-full bg-[#050816]/95 backdrop-blur-3xl"
+            >
+              <div className="flex flex-col items-center py-8 gap-8">
+                {['Sobre mí', 'Skills', 'Proyectos', 'Contacto'].map((item, i) => (
+                  <motion.a
+                    key={item}
+                    href={`#${item.toLowerCase().replace(' ', '-')}`}
+                    onClick={() => setMobileMenuOpen(false)}
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: i * 0.1 }}
+                    className="text-sm font-black uppercase tracking-[0.2em] hover:text-purple-500 transition-colors"
+                  >
+                    {item}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </header>
 
       {/* --- Hero Section --- */}
@@ -345,7 +373,7 @@ export default function Portfolio() {
             System Status: Optimal
           </motion.div>
 
-          <h2 className="text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.8] mb-12 uppercase">
+          <h2 className="text-5xl sm:text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.8] mb-12 uppercase mt-8 md:mt-0">
             <motion.span 
               initial={{ opacity: 0, x: -100 }}
               animate={{ opacity: 1, x: 0 }}
@@ -377,12 +405,12 @@ export default function Portfolio() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.8 }}
-            className="flex flex-wrap items-center justify-center gap-8"
+            className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-8 w-full sm:w-auto"
           >
-            <GlowButton primary>
+            <GlowButton primary className="w-full sm:w-auto">
               Explorar Proyectos <ChevronRight className="w-4 h-4" />
             </GlowButton>
-            <GlowButton>
+            <GlowButton className="w-full sm:w-auto">
               <MessageSquare className="w-4 h-4" /> Iniciar Sesión
             </GlowButton>
           </motion.div>
@@ -413,7 +441,7 @@ export default function Portfolio() {
       </section>
 
       {/* --- About Section --- */}
-      <section id="sobre-mí" className="py-40 px-6 relative">
+      <section id="sobre-mí" className="py-24 md:py-40 px-6 relative">
         <div className="max-w-7xl mx-auto">
           <SectionTitle title="Misión Digital" subtitle="Sobre el Autor" />
           
@@ -448,7 +476,7 @@ export default function Portfolio() {
               </div>
             </motion.div>
 
-            <div className="relative h-[600px] w-full flex items-center justify-center">
+            <div className="relative h-[400px] md:h-[600px] w-full flex items-center justify-center mt-12 md:mt-0">
               <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} />
               
               {/* Stats overlay or secondary grid if needed */}
@@ -477,7 +505,7 @@ export default function Portfolio() {
       </section>
 
       {/* --- Skills Section --- */}
-      <section id="skills" className="py-40 px-6 bg-white/[0.01]">
+      <section id="skills" className="py-24 md:py-40 px-6 bg-white/[0.01]">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
             <SectionTitle title="Core Engine" subtitle="Tecnologías" />
@@ -523,11 +551,11 @@ export default function Portfolio() {
       </section>
 
       {/* --- Projects Section --- */}
-      <section id="proyectos" className="py-40 px-6">
+      <section id="proyectos" className="py-24 md:py-40 px-6">
         <div className="max-w-7xl mx-auto">
           <SectionTitle title="Nexus Proyectual" subtitle="Portafolio" />
           
-          <div className="grid lg:grid-cols-3 gap-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
             {projects.map((project, i) => (
               <motion.div
                 key={project.title}
@@ -592,11 +620,11 @@ export default function Portfolio() {
       </section>
 
       {/* --- Contact Section --- */}
-      <section id="contacto" className="py-40 px-6">
+      <section id="contacto" className="py-24 md:py-40 px-6">
         <motion.div 
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          className="max-w-6xl mx-auto glass rounded-[4rem] p-16 md:p-32 relative overflow-hidden border-white/10 text-center"
+          className="max-w-6xl mx-auto glass rounded-[2rem] md:rounded-[4rem] p-8 sm:p-16 md:p-32 relative overflow-hidden border-white/10 text-center"
         >
           <div className="absolute inset-0 cyber-grid opacity-10" />
           <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent" />
@@ -610,8 +638,8 @@ export default function Portfolio() {
               <MessageSquare className="w-10 h-10 text-purple-400" />
             </motion.div>
             
-            <h3 className="text-5xl md:text-8xl font-black mb-10 tracking-tighter uppercase">
-              ¿Iniciamos la <br /> <span className="text-gradient">Conexión?</span>
+            <h3 className="text-4xl sm:text-5xl md:text-8xl font-black mb-10 tracking-tighter uppercase">
+              ¿Iniciamos la <br className="hidden sm:block" /> <span className="text-gradient">Conexión?</span>
             </h3>
             
             <p className="text-gray-400 text-xl max-w-2xl mx-auto mb-20 font-medium">
@@ -640,7 +668,7 @@ export default function Portfolio() {
 
             <motion.button 
               whileHover={{ scale: 1.05 }}
-              className="mt-20 px-16 py-6 rounded-3xl bg-gradient-to-r from-purple-600 to-blue-600 font-black uppercase tracking-[0.3em] text-xs shadow-[0_0_50px_rgba(147,51,234,0.3)] active:scale-95"
+              className="mt-16 md:mt-20 px-8 sm:px-16 py-4 sm:py-6 w-full sm:w-auto rounded-3xl bg-gradient-to-r from-purple-600 to-blue-600 font-black uppercase tracking-[0.3em] text-xs shadow-[0_0_50px_rgba(147,51,234,0.3)] active:scale-95"
             >
               Enviar Mensaje
             </motion.button>

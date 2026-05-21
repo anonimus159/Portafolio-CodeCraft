@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #0F172A;
+  --color-on-primary: #FFFFFF;
+  --color-secondary: #1E293B;
+  --color-accent: #22C55E;
+  --color-background: #020617;
+  --color-foreground: #F8FAFC;
+  --color-muted: #1A1E2F;
+  --color-border: #334155;
+  --color-destructive: #EF4444;
+  --color-ring: #0F172A;
+  
+  --font-heading: 'Orbitron', sans-serif;
+  --font-body: 'Exo 2', sans-serif;
+}
+
+@layer base {
+  *, ::before, ::after {
+    border-color: var(--color-border);
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-body);
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+}

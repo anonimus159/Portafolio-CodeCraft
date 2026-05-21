@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Merriweather", "Georgia", serif;
+  
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  
+  --color-sidebar: var(--sidebar);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-hover: var(--hover);
+}
+
+@layer base {
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+    --sidebar: #f7f7f5;
+    --border: #e2e2e2;
+    --muted: #f0f0f0;
+    --muted-foreground: #737373;
+    --accent: #5e6ad2;
+    --accent-foreground: #ffffff;
+    --hover: #ebebea;
+  }
+
+  .dark {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --sidebar: #111111;
+    --border: #222222;
+    --muted: #1a1a1a;
+    --muted-foreground: #888888;
+    --accent: #5e6ad2;
+    --accent-foreground: #ffffff;
+    --hover: #1f1f1f;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply bg-background text-foreground antialiased font-sans;
+  }
+  
+  /* Animación global y suave para el cambio de tema sin romper Framer Motion */
+  html, body, aside, div, header, nav, button, input, p, span, h1, h2, h3, a, svg {
+    transition-property: background-color, border-color, color, fill, stroke, box-shadow;
+    transition-duration: 500ms;
+    transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  
+  /* Custom scrollbar for webkit */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-muted-foreground;
+  }
+}
+
+/* Linear-style smooth utilities */
+.glass-panel {
+  @apply bg-sidebar/80 backdrop-blur-md border border-border;
+}
+
+.text-gradient {
+  @apply bg-clip-text text-transparent bg-gradient-to-r from-foreground to-muted-foreground;
+}
