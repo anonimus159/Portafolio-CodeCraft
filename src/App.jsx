@@ -582,9 +582,6 @@ export default function Portfolio() {
                       >
                         Lanzar Demo <ExternalLink className="w-4 h-4" />
                       </a>
-                      <button className="w-14 h-14 rounded-2xl glass border-white/10 hover:bg-white/5 flex items-center justify-center transition-all active:scale-90">
-                        <FaGithub className="w-6 h-6" />
-                      </button>
                     </div>
                   </div>
                 </div>
