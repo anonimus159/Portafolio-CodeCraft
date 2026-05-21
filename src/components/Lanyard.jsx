@@ -7,6 +7,8 @@ import { BallCollider, CuboidCollider, Physics, RigidBody, useRopeJoint, useSphe
 import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 import cardGLB from '../assets/lanyard/card.glb';
+import strapImage from '../assets/strap.svg';
+import cardIconImage from '../assets/card_icon.png';
 import * as THREE from 'three';
 import './Lanyard.css';
 
@@ -81,8 +83,8 @@ function Band({ maxSpeed = 50, minSpeed = 0, isMobile = false }) {
     dir = new THREE.Vector3();
   const segmentProps = { type: 'dynamic', canSleep: true, colliders: false, angularDamping: 4, linearDamping: 4 };
   const { nodes, materials } = useGLTF(cardGLB);
-  const strapTexture = useTexture('/strap.svg');
-  const logoTexture = useTexture('/card_icon.png');
+  const strapTexture = useTexture(strapImage);
+  const logoTexture = useTexture(cardIconImage);
   const [curve] = useState(
     () =>
       new THREE.CatmullRomCurve3([new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()])
