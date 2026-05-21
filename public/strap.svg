@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="64" viewBox="0 0 512 64" fill="#111111">
+  <rect width="512" height="64" fill="#111111" />
+  <g fill="#00f2fe" font-family="monospace" font-size="24" font-weight="bold" text-anchor="middle" dominant-baseline="middle">
+    <text x="64" y="32">CODECRAFT</text>
+    <text x="192" y="32">&lt;/&gt;</text>
+    <text x="320" y="32">CODECRAFT</text>
+    <text x="448" y="32">&lt;/&gt;</text>
+  </g>
+</svg>

@@ -1,0 +1,80 @@
+[
+  {
+    "pedido_id": 1,
+    "producto_id": 1,
+    "cantidad": 2,
+    "precio_unitario": 12,
+    "lugar_preparacion": "cocina",
+    "estado": "listo",
+    "id": 1,
+    "created_at": "2026-04-30T00:52:45.024Z",
+    "updated_at": "2026-05-01T01:37:37.011Z"
+  },
+  {
+    "pedido_id": 1,
+    "producto_id": 5,
+    "cantidad": 3,
+    "precio_unitario": 2,
+    "lugar_preparacion": "barra",
+    "estado": "en_preparacion",
+    "id": 2,
+    "created_at": "2026-04-30T00:53:04.798Z",
+    "updated_at": "2026-05-01T04:47:04.744Z"
+  },
+  {
+    "pedido_id": 2,
+    "producto_id": 3,
+    "cantidad": 1,
+    "precio_unitario": 13,
+    "lugar_preparacion": "cocina",
+    "estado": "en_preparacion",
+    "id": 3,
+    "created_at": "2026-04-30T00:55:15.835Z",
+    "updated_at": "2026-05-01T01:37:22.397Z"
+  },
+  {
+    "pedido_id": 2,
+    "producto_id": 5,
+    "cantidad": 1,
+    "precio_unitario": 2,
+    "lugar_preparacion": "barra",
+    "estado": "en_preparacion",
+    "id": 4,
+    "created_at": "2026-04-30T00:55:17.044Z",
+    "updated_at": "2026-05-01T01:37:21.172Z"
+  },
+  {
+    "pedido_id": 3,
+    "producto_id": 1,
+    "cantidad": 1,
+    "precio_unitario": 12,
+    "lugar_preparacion": "cocina",
+    "estado": "listo",
+    "id": 5,
+    "created_at": "2026-04-30T01:00:05.707Z",
+    "updated_at": "2026-05-01T05:29:43.261Z"
+  },
+  {
+    "pedido_id": 4,
+    "producto_id": 1,
+    "cantidad": 2,
+    "precio_unitario": 12,
+    "notas": "sin cebolla",
+    "lugar_preparacion": "cocina",
+    "estado": "en_preparacion",
+    "id": 6,
+    "created_at": "2026-04-30T18:31:51.100Z",
+    "updated_at": "2026-05-01T01:37:41.411Z"
+  },
+  {
+    "pedido_id": 4,
+    "producto_id": 5,
+    "cantidad": 1,
+    "precio_unitario": 2,
+    "lugar_preparacion": "barra",
+    "estado": "en_preparacion",
+    "id": 7,
+    "created_at": "2026-04-30T18:31:55.911Z",
+    "updated_at": "2026-05-01T19:31:50.982Z"
+  }
+]

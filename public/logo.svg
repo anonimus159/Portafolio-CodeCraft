@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 56" fill="none">
+  <defs>
+    <linearGradient id="sparkGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00bcd4"/>
+      <stop offset="100%" stop-color="#00f2fe"/>
+    </linearGradient>
+    <linearGradient id="anvilGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3a3a4a"/>
+      <stop offset="50%" stop-color="#1a1a2e"/>
+      <stop offset="100%" stop-color="#2a2a3a"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Anvil icon (28x28 centered at x=14, y=28) -->
+  <!-- Base platform -->
+  <rect x="4" y="37" width="22" height="4" rx="1.5" fill="url(#anvilGrad)" stroke="#ffffff22" stroke-width="0.5"/>
+  <!-- Stem -->
+  <polygon points="9,37 11,31 19,31 21,37" fill="#1a1a2e" stroke="#ffffff22" stroke-width="0.5"/>
+  <!-- Top body -->
+  <polygon points="1,31 29,31 27,25 3,25" fill="url(#anvilGrad)" stroke="white" stroke-width="0.6"/>
+  <!-- Horn left -->
+  <path d="M3,28 Q0,28 0,30 Q0,31 3,31 Z" fill="url(#anvilGrad)" stroke="white" stroke-width="0.6"/>
+  <!-- Right bump -->
+  <path d="M27,26 Q31,25.5 32,27.5 Q31,31 27,31 Z" fill="url(#anvilGrad)" stroke="white" stroke-width="0.6"/>
+
+  <!-- Spark center glow -->
+  <ellipse cx="15" cy="25" rx="3" ry="3" fill="#00f2fe" opacity="0.35" filter="url(#glow)"/>
+  <ellipse cx="15" cy="25" rx="1.2" ry="1.2" fill="white" opacity="0.9"/>
+
+  <!-- Sparks flying up -->
+  <g filter="url(#glow)" fill="url(#sparkGrad)">
+    <polygon points="14.4,23.5 15.6,23.5 15.2,10 14.8,10"/>
+    <polygon points="14,24 15,23 10,14 9.5,14.5"/>
+    <polygon points="13.5,24.5 14.3,23.5 7,18 6.8,18.8"/>
+    <polygon points="15,23 16,24 20,14 19.5,13.5"/>
+    <polygon points="15.7,23.5 16.5,24.5 23,18 22.8,17.2"/>
+    <!-- Mini sparks -->
+    <polygon points="10.5,16 11.3,15.5 10.8,13.5 10,14" opacity="0.7"/>
+    <polygon points="19.5,15 20.2,15.5 20.8,13.5 20,13" opacity="0.7"/>
+    <polygon points="12,12 12.6,11.5 12.2,9.5 11.6,10" opacity="0.55"/>
+    <polygon points="18,11.5 18.6,12 19.2,10 18.5,9.5" opacity="0.55"/>
+  </g>
+
+  <!-- Brand text: CODECRAFT -->
+  <text x="40" y="30" font-family="'Arial Black', 'Impact', sans-serif" font-size="18" font-weight="900" fill="white" letter-spacing="0.5">CODE<tspan fill="#00bcd4">CRAFT</tspan></text>
+
+  <!-- Subtitle -->
+  <line x1="40" y1="39" x2="60" y2="39" stroke="#00bcd4" stroke-width="0.8" opacity="0.7"/>
+  <text x="66" y="40" font-family="Arial, sans-serif" font-size="5.5" font-weight="700" fill="#00bcd4" letter-spacing="2.5" opacity="0.85">PROGRAMMING FORGE</text>
+  <line x1="163" y1="39" x2="183" y2="39" stroke="#00bcd4" stroke-width="0.8" opacity="0.7"/>
+</svg>

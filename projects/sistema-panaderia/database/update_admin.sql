@@ -1,0 +1,1 @@
+UPDATE usuarios SET password = '$2a$10$wJrFmVtsXO0BoMqrsHaheee3smLDvpaBNTbTUH5ERRLFp3H2ePcZa' WHERE email = 'admin@restaurante.com';

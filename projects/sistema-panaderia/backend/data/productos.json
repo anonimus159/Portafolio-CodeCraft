@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Clásica",
+    "descripcion": "Carne, queso, lechuga",
+    "precio": 12,
+    "categoria_id": 2,
+    "tipo": "comida",
+    "activo": true
+  },
+  {
+    "id": 2,
+    "nombre": "Pizza Margarita",
+    "descripcion": "Salsa, mozzarella, albahaca",
+    "precio": 15,
+    "categoria_id": 2,
+    "tipo": "comida",
+    "activo": true
+  },
+  {
+    "id": 3,
+    "nombre": "Pasta Carbonara",
+    "descripcion": "Bacon, huevo, parmesano",
+    "precio": 13,
+    "categoria_id": 2,
+    "tipo": "comida",
+    "activo": true
+  },
+  {
+    "id": 4,
+    "nombre": "Ensalada César",
+    "descripcion": "Lechuga, crutones, aderezo",
+    "precio": 8,
+    "categoria_id": 1,
+    "tipo": "comida",
+    "activo": true
+  },
+  {
+    "id": 5,
+    "nombre": "Gaseosa",
+    "descripcion": "500ml",
+    "precio": 2,
+    "categoria_id": 3,
+    "tipo": "bebida",
+    "activo": true
+  },
+  {
+    "id": 6,
+    "nombre": "Cerveza",
+    "descripcion": "330ml",
+    "precio": 3,
+    "categoria_id": 3,
+    "tipo": "bebida",
+    "activo": true
+  },
+  {
+    "id": 7,
+    "nombre": "Café",
+    "descripcion": "Taza de café",
+    "precio": 2.5,
+    "categoria_id": 3,
+    "tipo": "bebida",
+    "activo": true
+  },
+  {
+    "id": 8,
+    "nombre": "Brownie",
+    "descripcion": "Con helado",
+    "precio": 5,
+    "categoria_id": 4,
+    "tipo": "comida",
+    "activo": true
+  }
+]

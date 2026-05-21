@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-[#f4f7f9] text-slate-900 antialiased;
+    font-family: 'Inter', sans-serif;
+    /* Subtle light tech background grid */
+    background-image: radial-gradient(circle at 100% 100%, rgba(6, 182, 212, 0.05) 0%, transparent 50%), 
+                      linear-gradient(rgba(6, 182, 212, 0.03) 1px, transparent 1px), 
+                      linear-gradient(90deg, rgba(6, 182, 212, 0.03) 1px, transparent 1px);
+    background-size: 100% 100%, 30px 30px, 30px 30px;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
+  }
+}
+
+@layer components {
+  .glass-panel {
+    @apply bg-white/70 backdrop-blur-xl border border-white shadow-[0_8px_30px_rgb(6,182,212,0.06)];
+  }
+  
+  .glass-card {
+    @apply glass-panel hover:shadow-[0_8px_30px_rgb(6,182,212,0.15)] hover:border-cyan-200 transition-all duration-300 rounded-2xl;
+  }
+
+  .tech-button {
+    @apply relative overflow-hidden bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold tracking-wide shadow-[0_4px_15px_rgb(6,182,212,0.3)] hover:shadow-[0_6px_25px_rgb(6,182,212,0.5)] transition-all duration-300 transform hover:-translate-y-0.5 rounded-xl;
+  }
+  
+  .tech-input {
+    @apply block w-full rounded-xl border border-slate-200 bg-white/60 px-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:border-cyan-400 focus:outline-none focus:ring-4 focus:ring-cyan-400/10 disabled:bg-slate-50 transition-all duration-300 shadow-sm backdrop-blur-sm hover:bg-white/90;
+  }
+}
+
+/* Animaciones globales para efectos visuales atractivos */
+
+/* Transición suave para hover */
+.transition-all {
+    transition: all 0.3s ease;
+}
+
+/* Efecto de carga skeleton */
+@keyframes skeleton-pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.skeleton {
+    animation: skeleton-slide 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+}
+
+@keyframes skeleton-slide {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* Efecto de hover con elevación */
+.card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Efecto de botón presionado */
+.btn-press:active {
+    transform: scale(0.95);
+}
+
+/* Efecto de brillo en cards */
+@keyframes shine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+.card-shine {
+    position: relative;
+    overflow: hidden;
+}
+
+.card-shine::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.card-shine:hover::after {
+    animation: shine 0.6s ease;
+}
+
+/* Fade in para elementos que aparecen */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 0.4s ease-out forwards;
+}
+
+/* Stagger animation delay para children */
+.stagger-children > *:nth-child(1) { animation-delay: 0ms; }
+.stagger-children > *:nth-child(2) { animation-delay: 100ms; }
+.stagger-children > *:nth-child(3) { animation-delay: 200ms; }
+.stagger-children > *:nth-child(4) { animation-delay: 300ms; }
+.stagger-children > *:nth-child(5) { animation-delay: 400ms; }
+
+/* Efecto pulse para notificaciones */
+@keyframes pulse-ring {
+    0% { transform: scale(0.8); opacity: 1; }
+    100% { transform: scale(2); opacity: 0; }
+}
+
+.pulse-badge::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: currentColor;
+    animation: pulse-ring 1.5s ease-out infinite;
+}
+
+/* Efecto de contador animado */
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.count-animation {
+    animation: countUp 0.5s ease-out;
+}
+
+/* Efecto ripple para clicks */
+@keyframes ripple {
+    0% { transform: scale(0); opacity: 0.5; }
+    100% { transform: scale(4); opacity: 0; }
+}
+
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 50%;
+    left: 50%;
+    background: rgba(255,255,255,0.3);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.ripple:active::after {
+    animation: ripple 0.4s ease-out;
+}
+
+/* Scroll reveal animation */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efecto glass para modales */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Efecto de bounce para elementos nuevos */
+@keyframes bounce-in {
+    0% { transform: scale(0); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.animate-bounce-in {
+    animation: bounce-in 0.3s ease-out;
+}
+
+/* Efecto wiggle para errores */
+@keyframes wiggle {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.animate-wiggle {
+    animation: wiggle 0.3s ease-out;
+}
+
+/* Tamaño del scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Animación de entrada para alertas */
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.3s ease-out;
+}
+
+/* Efecto de hover con borde gradiente */
+.gradient-border {
+    position: relative;
+}
+
+.gradient-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+    border-radius: inherit;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.gradient-border:hover::before {
+    opacity: 1;
+}
+
+/* Efecto de typing para texto */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.cursor-blink::after {
+    content: '|';
+    animation: blink 1s infinite;
+}
+
+/* Animación flotante para iconos */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
+}
+
+.animate-float {
+    animation: float 2s ease-in-out infinite;
+}
+
+/* Efecto glow para elementos destacados */
+.glow {
+    box-shadow: 0 0 20px rgba(102, 126, 234, 0.5);
+}
+
+.glow-green {
+    box-shadow: 0 0 20px rgba(72, 199, 116, 0.5);
+}
+
+/* Transiciones suaves para todas las tablas */
+table tbody tr {
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: #f8fafc;
+}
+
+/* Efecto de inversión de color en hover para botones */
+.button-hover {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.button-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    transition: left 0.3s ease;
+    z-index: 0;
+}
+
+.button-hover:hover::before {
+    left: 0;
+}
+
+.button-hover span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modal animations */
+@keyframes zoomIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.modal-animate {
+    animation: zoomIn 0.2s ease-out;
+}
+
+/* Efecto de enfoque para inputs */
+input:focus, select:focus {
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* Animación de checkmark */
+@keyframes checkmark {
+    0% { stroke-dashoffset: 50; }
+    100% { stroke-dashoffset: 0; }
+}
+
+.checkmark-animate {
+    stroke-dasharray: 50;
+    stroke-dashoffset: 50;
+    animation: checkmark 0.5s ease-out forwards;
+}
+
+/* Spinner de carga */
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Efecto de shake para errores */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+.shake {
+    animation: shake 0.5s ease-in-out;
+}
+
+/* Número grande con animación */
+@keyframes numberPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); }
+}
+
+.number-pop {
+    animation: numberPop 0.3s ease-out;
+}

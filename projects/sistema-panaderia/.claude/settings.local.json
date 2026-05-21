@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mysql --version)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl *)",
+      "Bash(Get-ChildItem -Path \"D:\\\\INFORMACION\\\\Downloads\\\\sistema panaderia\" -Recurse -Directory)",
+      "Bash(Select-Object -First 50 FullName)"
+    ]
+  }
+}

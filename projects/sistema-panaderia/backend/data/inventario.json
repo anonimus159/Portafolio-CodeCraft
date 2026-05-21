@@ -1,0 +1,40 @@
+[
+  {
+    "id": 1,
+    "nombre": "Pan de hamburguesa",
+    "unidad": "unidad",
+    "cantidad": 98,
+    "stock_minimo": 20,
+    "precio_unitario": 0.5,
+    "activo": true,
+    "updated_at": "2026-05-01T05:29:57.832Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Carne de res",
+    "unidad": "gr",
+    "cantidad": 18,
+    "stock_minimo": "5",
+    "precio_unitario": "2000",
+    "updated_at": "2026-05-01T05:29:57.833Z"
+  },
+  {
+    "id": 3,
+    "nombre": "Queso cheddar",
+    "unidad": "kg",
+    "cantidad": 8,
+    "stock_minimo": 3,
+    "precio_unitario": 6,
+    "activo": true,
+    "updated_at": "2026-05-01T05:29:57.834Z"
+  },
+  {
+    "id": 4,
+    "nombre": "Gaseosa concentrada",
+    "unidad": "lt",
+    "cantidad": 30,
+    "stock_minimo": 10,
+    "precio_unitario": 1,
+    "activo": true
+  }
+]
