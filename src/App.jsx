@@ -212,7 +212,7 @@ const projects = [
     color: 'from-indigo-500/40 to-purple-500/40',
     icon: <Terminal className="w-6 h-6 text-indigo-400" />,
     image: '/assets/ai_workspace.png',
-    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/ai-workspace'
+    demoUrl: 'https://portafolio-code-craft.vercel.app/'
   },
   {
     title: 'SaaS Analytics',
