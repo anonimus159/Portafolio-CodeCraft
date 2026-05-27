@@ -5,7 +5,8 @@ import {
   Scale, 
   Droplets, 
   DollarSign, 
-  AlertTriangle 
+  AlertTriangle,
+  Lightbulb
 } from 'lucide-react';
 import { 
   AreaChart, 
@@ -21,13 +22,13 @@ import {
 import clsx from 'clsx';
 
 const salesData = [
-  { name: 'Lun', kilos: 400, ventas: 12000 },
-  { name: 'Mar', kilos: 300, ventas: 9000 },
-  { name: 'Mié', kilos: 550, ventas: 16500 },
-  { name: 'Jue', kilos: 450, ventas: 13500 },
-  { name: 'Vie', kilos: 700, ventas: 21000 },
-  { name: 'Sáb', kilos: 900, ventas: 27000 },
-  { name: 'Dom', kilos: 850, ventas: 25500 },
+  { name: 'Lun', kilos: 400, ventas: 12000, mermaPorcentaje: 4.5 },
+  { name: 'Mar', kilos: 300, ventas: 9000, mermaPorcentaje: 4.8 },
+  { name: 'Mié', kilos: 550, ventas: 16500, mermaPorcentaje: 5.2 },
+  { name: 'Jue', kilos: 450, ventas: 13500, mermaPorcentaje: 4.1 },
+  { name: 'Vie', kilos: 700, ventas: 21000, mermaPorcentaje: 3.8 },
+  { name: 'Sáb', kilos: 900, ventas: 27000, mermaPorcentaje: 3.5 },
+  { name: 'Dom', kilos: 850, ventas: 25500, mermaPorcentaje: 3.9 },
 ];
 
 const mermaData = [
@@ -189,6 +190,78 @@ export const Dashboard = () => {
                 <Bar dataKey="kilos" fill="var(--primary)" radius={[0, 4, 4, 0]} barSize={24} />
               </BarChart>
             </ResponsiveContainer>
+          </div>
+        </motion.div>
+      </div>
+
+      {/* Proactive Analysis Row */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        {/* Margin Analysis */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="glass rounded-2xl border border-border p-6"
+        >
+          <div className="mb-6">
+            <h3 className="text-lg font-bold text-foreground">Análisis de Merma vs Volumen</h3>
+            <p className="text-sm text-muted-foreground">Relación porcentual</p>
+          </div>
+          <div className="h-[250px] w-full">
+            <ResponsiveContainer width="100%" height="100%">
+              <AreaChart data={salesData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
+                <defs>
+                  <linearGradient id="colorMerma" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#ef4444" stopOpacity={0.3}/>
+                    <stop offset="95%" stopColor="#ef4444" stopOpacity={0}/>
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" vertical={false} />
+                <XAxis dataKey="name" stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} />
+                <YAxis stroke="var(--muted-foreground)" fontSize={12} tickLine={false} axisLine={false} tickFormatter={(value) => `${value}%`} />
+                <Tooltip 
+                  contentStyle={{ backgroundColor: 'var(--card)', borderColor: 'var(--border)', borderRadius: '0.75rem' }}
+                />
+                <Area type="monotone" dataKey="mermaPorcentaje" stroke="#ef4444" strokeWidth={3} fillOpacity={1} fill="url(#colorMerma)" name="% Merma" />
+              </AreaChart>
+            </ResponsiveContainer>
+          </div>
+        </motion.div>
+
+        {/* Predictive Widget */}
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="glass rounded-2xl border border-primary/30 p-6 bg-primary/5 flex flex-col"
+        >
+          <div className="flex items-center gap-3 mb-6">
+            <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center">
+              <Lightbulb className="w-5 h-5 text-primary" />
+            </div>
+            <div>
+              <h3 className="text-lg font-bold text-foreground">Sugerencias Proactivas</h3>
+              <p className="text-sm text-muted-foreground">Basado en frescura y rotación</p>
+            </div>
+          </div>
+          
+          <div className="flex-1 space-y-4">
+            <div className="bg-background rounded-xl p-4 border border-border">
+              <div className="flex justify-between items-start mb-2">
+                <span className="font-bold text-sm text-foreground">Promo Sugerida: Salmón Fresco</span>
+                <span className="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-1 rounded">Urgent</span>
+              </div>
+              <p className="text-xs text-muted-foreground mb-3">Lote P-9921 alcanza su 6to día. Sugerimos aplicar <strong>-10% descuento</strong> táctico hoy para rotar los 35.5 KG restantes.</p>
+              <button className="text-xs font-bold text-primary hover:underline">Aplicar en POS →</button>
+            </div>
+
+            <div className="bg-background rounded-xl p-4 border border-border">
+              <div className="flex justify-between items-start mb-2">
+                <span className="font-bold text-sm text-foreground">Alerta de Cadena de Frío</span>
+                <span className="text-xs font-bold text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">Warning</span>
+              </div>
+              <p className="text-xs text-muted-foreground">Revisar separación de Lomo Fino (Res) y Tilapia en Exhibidor 2 para evitar contaminación cruzada.</p>
+            </div>
           </div>
         </motion.div>
       </div>

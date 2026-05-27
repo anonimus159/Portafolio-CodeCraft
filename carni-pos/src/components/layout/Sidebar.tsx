@@ -7,16 +7,18 @@ import {
   Scissors, 
   ThermometerSnowflake, 
   Beef,
-  LogOut
+  LogOut,
+  Users
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const menuItems = [
-  { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
+  { icon: LayoutDashboard, label: 'Dashboard Proactivo', path: '/dashboard' },
   { icon: MonitorSpeaker, label: 'Punto de Venta (POS)', path: '/pos' },
   { icon: Scissors, label: 'Cortes y Rendimiento', path: '/cuts' },
-  { icon: Package, label: 'Inventario de Bodega', path: '/inventory' },
+  { icon: Package, label: 'Inventario y Trazabilidad', path: '/inventory' },
   { icon: ThermometerSnowflake, label: 'Refrigeración', path: '/refrigeration' },
+  { icon: Users, label: 'Gestión de Clientes', path: '/customers' },
 ];
 
 export const Sidebar = () => {

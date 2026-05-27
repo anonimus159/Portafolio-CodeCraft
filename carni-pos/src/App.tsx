@@ -8,6 +8,7 @@ import { POS } from './pages/POS';
 import { CutsAndYield } from './pages/CutsAndYield';
 import { Inventory } from './pages/Inventory';
 import { Refrigeration } from './pages/Refrigeration';
+import { Customers } from './pages/Customers';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -23,6 +24,7 @@ const AnimatedRoutes = () => {
           <Route path="/cuts" element={<PageWrapper><CutsAndYield /></PageWrapper>} />
           <Route path="/inventory" element={<PageWrapper><Inventory /></PageWrapper>} />
           <Route path="/refrigeration" element={<PageWrapper><Refrigeration /></PageWrapper>} />
+          <Route path="/customers" element={<PageWrapper><Customers /></PageWrapper>} />
           
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Route>

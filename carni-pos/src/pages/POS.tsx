@@ -15,12 +15,11 @@ import clsx from 'clsx';
 
 // Simulated Meat Products
 const products = [
-  { id: 1, name: 'Lomo Fino de Res', pricePerKg: 32000, category: 'Res', code: 'RES-01' },
-  { id: 2, name: 'Costilla de Res', pricePerKg: 18500, category: 'Res', code: 'RES-02' },
-  { id: 3, name: 'Pecho de Res', pricePerKg: 15000, category: 'Res', code: 'RES-03' },
-  { id: 4, name: 'Pechuga de Pollo', pricePerKg: 16000, category: 'Aves', code: 'AVE-01' },
-  { id: 5, name: 'Pernil de Cerdo', pricePerKg: 14500, category: 'Cerdo', code: 'CER-01' },
-  { id: 6, name: 'Tocino Barriguero', pricePerKg: 22000, category: 'Cerdo', code: 'CER-02' },
+  { id: 1, name: 'Lomo Fino Premium', price: 32000, category: 'Res', code: 'RES-001' },
+  { id: 2, name: 'Costilla de Res', price: 18500, category: 'Res', code: 'RES-002' },
+  { id: 3, name: 'Panceta de Cerdo', price: 22000, category: 'Cerdo', code: 'CER-001' },
+  { id: 4, name: 'Salmón Fresco', price: 45000, category: 'Pescados', code: 'PES-001' },
+  { id: 5, name: 'Filete Tilapia', price: 16000, category: 'Pescados', code: 'PES-002' },
 ];
 
 export const POS = () => {
@@ -30,6 +29,7 @@ export const POS = () => {
   const [isScaleConnected] = useState(true);
   const [isReadingScale, setIsReadingScale] = useState(false);
   const [showCheckout, setShowCheckout] = useState(false);
+  const [activePromotion, setActivePromotion] = useState<string>('normal');
 
   // USB Scale Simulator
   const readScale = () => {
@@ -48,21 +48,27 @@ export const POS = () => {
   const addToCart = () => {
     if (!selectedProduct || scaleWeight === 0) return;
     
-    const itemTotal = selectedProduct.pricePerKg * scaleWeight;
+    let finalPrice = selectedProduct.price;
+    // Ventas Tácticas: Ajuste dinámico de precios
+    if (activePromotion === 'mayorista') finalPrice = finalPrice * 0.85;
+    if (activePromotion === 'fin_semana' && selectedProduct.category === 'Res') finalPrice = finalPrice * 0.90;
     
-    setCart([...cart, {
+    const cartItem = {
       id: Date.now(),
       product: selectedProduct,
       weight: scaleWeight,
-      total: itemTotal
-    }]);
+      subtotal: scaleWeight * finalPrice,
+      appliedPrice: finalPrice
+    };
+    
+    setCart([...cart, cartItem]);
     
     // Reset scale
     setSelectedProduct(null);
     setScaleWeight(0);
   };
 
-  const cartTotal = cart.reduce((sum, item) => sum + item.total, 0);
+  const cartTotal = cart.reduce((sum, item) => sum + item.subtotal, 0);
 
   const handleCheckout = () => {
     setShowCheckout(true);
@@ -96,7 +102,7 @@ export const POS = () => {
                 <div className="flex justify-between items-end">
                   <div>
                     <h3 className="text-xl font-bold text-foreground">{selectedProduct.name}</h3>
-                    <p className="text-primary font-medium">${selectedProduct.pricePerKg.toLocaleString()} / KG</p>
+                    <p className="text-primary font-medium">${selectedProduct.price.toLocaleString()} / KG</p>
                   </div>
                   <button 
                     onClick={() => { setSelectedProduct(null); setScaleWeight(0); }}
@@ -148,7 +154,7 @@ export const POS = () => {
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-muted-foreground" />
             <input 
               type="text" 
-              placeholder="Buscar corte o código (Ej: Costilla, RES-02)..." 
+              placeholder="Buscar corte o código (Ej: Costilla, RES-002)..." 
               className="w-full bg-background border border-border rounded-xl py-3 pl-10 pr-4 focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>
@@ -170,7 +176,7 @@ export const POS = () => {
                   </span>
                 </div>
                 <h3 className="font-bold text-foreground mb-1 relative z-10">{product.name}</h3>
-                <p className="text-primary font-medium text-sm relative z-10">${product.pricePerKg.toLocaleString()} / kg</p>
+                <p className="text-primary font-medium text-sm relative z-10">${product.price.toLocaleString()} / kg</p>
                 
                 {selectedProduct?.id === product.id && (
                   <motion.div layoutId="activeProduct" className="absolute inset-0 border-2 border-primary rounded-xl" />
@@ -183,11 +189,20 @@ export const POS = () => {
 
       {/* Right Panel: Cart/Ticket */}
       <div className="w-96 glass rounded-2xl border border-border flex flex-col overflow-hidden">
-        <div className="p-4 border-b border-border/50 bg-muted/20">
+        <div className="flex justify-between items-center bg-muted/20 p-4 border-b border-border/50">
           <h2 className="font-bold text-lg flex items-center gap-2">
             <ShoppingCart className="w-5 h-5 text-primary" />
             Ticket de Venta
           </h2>
+          <select 
+            value={activePromotion}
+            onChange={(e) => setActivePromotion(e.target.value)}
+            className="bg-background border border-border text-xs font-bold uppercase p-2 rounded-lg text-primary focus:outline-none focus:border-primary/50"
+          >
+            <option value="normal">Precio Base</option>
+            <option value="mayorista">Desc. Mayorista (-15%)</option>
+            <option value="fin_semana">Promo Res Fin Semana (-10%)</option>
+          </select>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4 space-y-3 custom-scrollbar">
@@ -211,10 +226,10 @@ export const POS = () => {
                 >
                   <div className="flex justify-between items-start pr-6">
                     <span className="font-bold text-sm text-foreground">{item.product.name}</span>
-                    <span className="font-bold text-primary">${item.total.toLocaleString()}</span>
+                    <span className="font-bold text-primary">${item.subtotal.toLocaleString()}</span>
                   </div>
                   <div className="flex justify-between items-center text-xs text-muted-foreground">
-                    <span>{item.weight.toFixed(3)} KG x ${item.product.pricePerKg.toLocaleString()}</span>
+                    <span>{item.weight.toFixed(3)} KG x ${item.appliedPrice.toLocaleString()}</span>
                     <span>{item.product.code}</span>
                   </div>
                   <button 

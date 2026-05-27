@@ -2,11 +2,11 @@ import { Package, Search, Filter, AlertCircle, ArrowDown, ArrowUp } from 'lucide
 import clsx from 'clsx';
 
 const inventoryData = [
-  { id: 1, name: 'Canal de Res (Premium)', category: 'Res Entera', stock: 1250.5, minStock: 500, unit: 'KG', status: 'ok', trend: 'down' },
-  { id: 2, name: 'Lomo Fino de Res', category: 'Cortes Res', stock: 45.2, minStock: 50, unit: 'KG', status: 'warning', trend: 'down' },
-  { id: 3, name: 'Costilla de Cerdo', category: 'Cortes Cerdo', stock: 120.0, minStock: 80, unit: 'KG', status: 'ok', trend: 'up' },
-  { id: 4, name: 'Pechuga de Pollo', category: 'Aves', stock: 35.5, minStock: 100, unit: 'KG', status: 'critical', trend: 'down' },
-  { id: 5, name: 'Hueso Blanco', category: 'Subproductos', stock: 450.0, minStock: 100, unit: 'KG', status: 'ok', trend: 'up' },
+  { id: 1, name: 'Canal de Res (Premium)', category: 'Res Entera', stock: 1250.5, minStock: 500, unit: 'KG', status: 'ok', trend: 'down', lote: 'L-202605', daysFresh: 2 },
+  { id: 2, name: 'Lomo Fino de Res', category: 'Cortes Res', stock: 45.2, minStock: 50, unit: 'KG', status: 'warning', trend: 'down', lote: 'L-202604', daysFresh: 4 },
+  { id: 3, name: 'Costilla de Cerdo', category: 'Cortes Cerdo', stock: 120.0, minStock: 80, unit: 'KG', status: 'ok', trend: 'up', lote: 'C-202611', daysFresh: 1 },
+  { id: 4, name: 'Salmón Fresco Entero', category: 'Pescados', stock: 35.5, minStock: 100, unit: 'KG', status: 'critical', trend: 'down', lote: 'P-9921', daysFresh: 6 },
+  { id: 5, name: 'Filete de Tilapia', category: 'Pescados', stock: 450.0, minStock: 100, unit: 'KG', status: 'ok', trend: 'up', lote: 'P-9922', daysFresh: 1 },
 ];
 
 export const Inventory = () => {
@@ -45,8 +45,9 @@ export const Inventory = () => {
               <tr className="bg-muted/30 border-b border-border/50">
                 <th className="p-4 font-medium text-muted-foreground text-sm">Producto</th>
                 <th className="p-4 font-medium text-muted-foreground text-sm">Categoría</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm">Lote / Trazabilidad</th>
                 <th className="p-4 font-medium text-muted-foreground text-sm text-right">Stock Actual</th>
-                <th className="p-4 font-medium text-muted-foreground text-sm text-right">Mínimo</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm text-center">Frescura</th>
                 <th className="p-4 font-medium text-muted-foreground text-sm text-center">Estado</th>
               </tr>
             </thead>
@@ -62,6 +63,9 @@ export const Inventory = () => {
                       {item.category}
                     </span>
                   </td>
+                  <td className="p-4">
+                    <span className="font-mono text-xs text-muted-foreground bg-muted/30 px-2 py-1 rounded">{item.lote}</span>
+                  </td>
                   <td className="p-4 text-right">
                     <div className="flex items-center justify-end gap-2">
                       {item.trend === 'up' ? <ArrowUp className="w-3 h-3 text-green-500" /> : <ArrowDown className="w-3 h-3 text-red-500" />}
@@ -69,8 +73,14 @@ export const Inventory = () => {
                       <span className="text-xs text-muted-foreground">{item.unit}</span>
                     </div>
                   </td>
-                  <td className="p-4 text-right">
-                    <span className="font-medium text-muted-foreground">{item.minStock} {item.unit}</span>
+                  <td className="p-4 text-center">
+                    <span className={clsx(
+                      "text-xs font-bold px-2 py-1 rounded-md",
+                      item.daysFresh <= 2 ? "text-green-500 bg-green-500/10" : 
+                      item.daysFresh <= 4 ? "text-yellow-500 bg-yellow-500/10" : "text-red-500 bg-red-500/10 animate-pulse"
+                    )}>
+                      {item.daysFresh} días
+                    </span>
                   </td>
                   <td className="p-4 text-center">
                     <div className={clsx(
