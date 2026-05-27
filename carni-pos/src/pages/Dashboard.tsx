@@ -249,7 +249,7 @@ export const Dashboard = () => {
             <div className="bg-background rounded-xl p-4 border border-border">
               <div className="flex justify-between items-start mb-2">
                 <span className="font-bold text-sm text-foreground">Promo Sugerida: Salmón Fresco</span>
-                <span className="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-1 rounded">Urgent</span>
+                <span className="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-1 rounded">Urgente</span>
               </div>
               <p className="text-xs text-muted-foreground mb-3">Lote P-9921 alcanza su 6to día. Sugerimos aplicar <strong>-10% descuento</strong> táctico hoy para rotar los 35.5 KG restantes.</p>
               <button className="text-xs font-bold text-primary hover:underline">Aplicar en POS →</button>
@@ -258,7 +258,7 @@ export const Dashboard = () => {
             <div className="bg-background rounded-xl p-4 border border-border">
               <div className="flex justify-between items-start mb-2">
                 <span className="font-bold text-sm text-foreground">Alerta de Cadena de Frío</span>
-                <span className="text-xs font-bold text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">Warning</span>
+                <span className="text-xs font-bold text-yellow-500 bg-yellow-500/10 px-2 py-1 rounded">Precaución</span>
               </div>
               <p className="text-xs text-muted-foreground">Revisar separación de Lomo Fino (Res) y Tilapia en Exhibidor 2 para evitar contaminación cruzada.</p>
             </div>

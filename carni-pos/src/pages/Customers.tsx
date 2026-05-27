@@ -102,7 +102,7 @@ export const Customers = () => {
                       "bg-muted text-muted-foreground"
                     )}>
                       {selectedCustomer.loyalty === 'Platinum' && <Crown className="w-3 h-3" />}
-                      {selectedCustomer.loyalty} Member
+                      Miembro {selectedCustomer.loyalty}
                     </div>
                   </div>
                   <h2 className="text-2xl font-bold text-foreground mb-1">{selectedCustomer.name}</h2>

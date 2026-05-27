@@ -418,7 +418,7 @@ export default function Portfolio() {
             className="inline-flex items-center gap-3 rounded-xl glass border-purple-500/20 px-6 py-2 text-[10px] font-black uppercase tracking-[0.4em] text-purple-400 mb-12 shadow-[0_0_20px_rgba(147,51,234,0.1)]"
           >
             <Activity className="w-3 h-3 animate-pulse" />
-            System Status: Optimal
+            Estado del Sistema: Óptimo
           </motion.div>
 
           <h2 className="text-5xl sm:text-7xl md:text-[10rem] font-black tracking-tighter leading-[0.8] mb-12 uppercase mt-8 md:mt-0">
@@ -428,7 +428,7 @@ export default function Portfolio() {
               transition={{ duration: 1, type: "spring" }}
               className="block"
             >
-              Crafting
+              Creando
             </motion.span>
             <motion.span 
               initial={{ opacity: 0, x: 100 }}
@@ -436,7 +436,7 @@ export default function Portfolio() {
               transition={{ duration: 1, type: "spring" }}
               className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600"
             >
-              Solutions
+              Soluciones
             </motion.span>
           </h2>
 
@@ -446,7 +446,7 @@ export default function Portfolio() {
             transition={{ delay: 0.5, duration: 1 }}
             className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 leading-relaxed font-light uppercase tracking-widest"
           >
-            Crafting <span className="text-white font-bold">Code</span>. Building <span className="text-cyan-400 font-bold">Solutions</span>.
+            Escribiendo <span className="text-white font-bold">Código</span>. Construyendo <span className="text-cyan-400 font-bold">Soluciones</span>.
           </motion.p>
 
           <motion.div
@@ -719,12 +719,12 @@ export default function Portfolio() {
               />
             </div>
             <p className="text-gray-500 text-[10px] font-black uppercase tracking-[0.5em]">
-              Crafting Code. Building Solutions.
+              Escribiendo Código. Construyendo Soluciones.
             </p>
           </div>
           
           <div className="flex gap-12">
-            {['Privacy', 'Terms', 'Logs', 'System'].map(item => (
+            {['Privacidad', 'Términos', 'Registros', 'Sistema'].map(item => (
               <a key={item} href="#" className="text-[10px] font-black uppercase tracking-widest text-gray-600 hover:text-white transition-colors">
                 {item}
               </a>
@@ -732,7 +732,7 @@ export default function Portfolio() {
           </div>
 
           <p className="text-gray-700 text-[10px] font-black uppercase tracking-widest">
-            Handcrafted with <span className="text-purple-500">Terminal</span> in the Matrix.
+            Hecho a mano con la <span className="text-purple-500">Terminal</span> en la Matrix.
           </p>
         </div>
       </footer>
