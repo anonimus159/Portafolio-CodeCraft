@@ -9,6 +9,9 @@ import { POS } from '@/pages/POS';
 import { Store } from '@/pages/Store';
 import { Customers } from '@/pages/Customers';
 import { Settings } from '@/pages/Settings';
+import { Analytics } from '@/pages/Analytics';
+import { Prescriptions } from '@/pages/Prescriptions';
+import { Suppliers } from '@/pages/Suppliers';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -32,6 +35,9 @@ const AnimatedRoutes = () => {
           <Route path="/dashboard" element={<PageWrapper><Dashboard /></PageWrapper>} />
           <Route path="/inventory" element={<PageWrapper><Inventory /></PageWrapper>} />
           <Route path="/pos" element={<PageWrapper><POS /></PageWrapper>} />
+          <Route path="/analytics" element={<PageWrapper><Analytics /></PageWrapper>} />
+          <Route path="/prescriptions" element={<PageWrapper><Prescriptions /></PageWrapper>} />
+          <Route path="/suppliers" element={<PageWrapper><Suppliers /></PageWrapper>} />
           <Route path="/customers" element={<PageWrapper><Customers /></PageWrapper>} />
           <Route path="/settings" element={<PageWrapper><Settings /></PageWrapper>} />
         </Route>

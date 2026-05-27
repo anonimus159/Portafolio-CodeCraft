@@ -1,11 +1,27 @@
 import { Outlet } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
+import { CommandPalette } from '../ui/CommandPalette';
 
 export const Layout = () => {
+  const [isCommandOpen, setIsCommandOpen] = useState(false);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'k' && (e.metaKey || e.ctrlKey)) {
+        e.preventDefault();
+        setIsCommandOpen(prev => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   return (
     <div className="flex h-screen bg-background text-foreground overflow-hidden font-sans relative">
+      <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} />
       {/* Mesh Gradient Background for Admin Panel */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
         <motion.div 

@@ -7,15 +7,21 @@ import {
   Users, 
   Settings, 
   Pill,
-  LogOut
+  LogOut,
+  Activity,
+  FileText,
+  Truck
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard', path: '/dashboard' },
   { icon: ShoppingCart, label: 'Punto de Venta', path: '/pos' },
+  { icon: Activity, label: 'Analíticas', path: '/analytics' },
+  { icon: FileText, label: 'Recetas Médicas', path: '/prescriptions' },
   { icon: Package, label: 'Inventario', path: '/inventory' },
-  { icon: Users, label: 'Clientes', path: '/customers' },
+  { icon: Truck, label: 'Proveedores', path: '/suppliers' },
+  { icon: Users, label: 'Pacientes', path: '/customers' },
   { icon: Settings, label: 'Configuración', path: '/settings' },
 ];
 
