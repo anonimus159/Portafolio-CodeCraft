@@ -25,7 +25,7 @@ export const CutsAndYield = () => {
           <h1 className="text-3xl font-bold text-foreground tracking-tight">Cortes y Rendimiento</h1>
           <p className="text-muted-foreground mt-1">Desposte de Canal, cálculo de merma y rentabilidad esperada.</p>
         </div>
-        <button className="px-6 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+        <button onClick={() => alert("Abriendo formulario para iniciar un nuevo proceso de desposte...")} className="px-6 py-2 bg-primary hover:bg-primary/90 text-white font-medium rounded-xl shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
           <Scissors className="w-4 h-4" /> Nuevo Desposte
         </button>
       </div>
@@ -139,7 +139,7 @@ export const CutsAndYield = () => {
           </div>
           
           <div className="mt-6 flex justify-end">
-            <button className="px-6 py-2 bg-primary/20 hover:bg-primary/30 text-primary border border-primary/50 font-medium rounded-xl transition-all flex items-center gap-2">
+            <button onClick={() => alert("Desposte finalizado. Los cortes resultantes han sumado stock automáticamente en la pestaña de Inventario.")} className="px-6 py-2 bg-primary/20 hover:bg-primary/30 text-primary border border-primary/50 font-medium rounded-xl transition-all flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4" /> Finalizar Desposte y Enviar a Inventario
             </button>
           </div>
