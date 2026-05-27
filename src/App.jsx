@@ -195,7 +195,7 @@ const projects = [
     color: 'from-emerald-500/40 to-blue-500/40',
     icon: <Pill className="w-6 h-6 text-emerald-400" />,
     image: '/assets/farmasys.png',
-    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/farma-sys'
+    demoUrl: '/demos/farma-sys/'
   },
   {
     title: 'POS Fast Food',
