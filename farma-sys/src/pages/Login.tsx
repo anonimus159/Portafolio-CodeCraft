@@ -139,6 +139,9 @@ export const Login = () => {
                 <>
                   Iniciar Sesión
                   <ArrowRight className="w-4 h-4" />
+                </>
+              )}
+            </button>
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-8">
