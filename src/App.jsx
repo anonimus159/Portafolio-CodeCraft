@@ -15,7 +15,8 @@ import {
   ChevronRight,
   Shield,
   Activity,
-  Terminal
+  Terminal,
+  Pill
 } from 'lucide-react';
 import { FaGithub, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
@@ -186,6 +187,15 @@ const projects = [
     icon: <Cpu className="w-6 h-6 text-purple-400" />,
     image: '/assets/pos_panaderia.png',
     demoUrl: '/demos/pos-panaderia/'
+  },
+  {
+    title: 'FarmaSys',
+    description: 'Sistema SaaS integral para droguerías con panel administrativo, POS avanzado y alertas de inventario en tiempo real.',
+    tech: ['React', 'Vite', 'Zustand', 'Motion'],
+    color: 'from-emerald-500/40 to-blue-500/40',
+    icon: <Pill className="w-6 h-6 text-emerald-400" />,
+    image: '/assets/farmasys.png',
+    demoUrl: 'https://github.com/anonimus159/Portafolio-CodeCraft/tree/main/farma-sys'
   },
   {
     title: 'POS Fast Food',

@@ -23,6 +23,14 @@ const docContent: Record<string, { title: string, content: string }> = {
   }
 };
 
+export function generateStaticParams() {
+  return [
+    { id: 'roadmap' },
+    { id: 'arquitectura' },
+    { id: 'seguridad' },
+    { id: 'logs' }
+  ];
+}
 export default function DocumentPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
   const id = resolvedParams.id;
