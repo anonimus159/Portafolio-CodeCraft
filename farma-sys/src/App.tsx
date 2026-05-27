@@ -1,23 +1,64 @@
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { AnimatePresence, motion } from 'framer-motion';
 import { Layout } from '@/components/layout/Layout';
+import { PublicLayout } from '@/components/layout/PublicLayout';
 import { Login } from '@/pages/Login';
 import { Dashboard } from '@/pages/Dashboard';
 import { Inventory } from '@/pages/Inventory';
 import { POS } from '@/pages/POS';
+import { Store } from '@/pages/Store';
+import { Customers } from '@/pages/Customers';
+import { Settings } from '@/pages/Settings';
+
+const AnimatedRoutes = () => {
+  const location = useLocation();
+
+  return (
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.pathname}>
+        {/* Public Routes */}
+        <Route element={<PublicLayout />}>
+          <Route path="/" element={
+            <PageWrapper><Store /></PageWrapper>
+          } />
+        </Route>
+
+        <Route path="/login" element={
+          <PageWrapper><Login /></PageWrapper>
+        } />
+        
+        {/* Admin Routes */}
+        <Route element={<Layout />}>
+          <Route path="/dashboard" element={<PageWrapper><Dashboard /></PageWrapper>} />
+          <Route path="/inventory" element={<PageWrapper><Inventory /></PageWrapper>} />
+          <Route path="/pos" element={<PageWrapper><POS /></PageWrapper>} />
+          <Route path="/customers" element={<PageWrapper><Customers /></PageWrapper>} />
+          <Route path="/settings" element={<PageWrapper><Settings /></PageWrapper>} />
+        </Route>
+
+        {/* Fallback */}
+        <Route path="*" element={<Navigate to="/" replace />} />
+      </Routes>
+    </AnimatePresence>
+  );
+};
+
+const PageWrapper = ({ children }: { children: React.ReactNode }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 10 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -10 }}
+    transition={{ duration: 0.3 }}
+    className="h-full w-full"
+  >
+    {children}
+  </motion.div>
+);
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        
-        <Route element={<Layout />}>
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/inventory" element={<Inventory />} />
-          <Route path="/pos" element={<POS />} />
-        </Route>
-      </Routes>
+    <BrowserRouter basename="/demos/farma-sys">
+      <AnimatedRoutes />
     </BrowserRouter>
   );
 }

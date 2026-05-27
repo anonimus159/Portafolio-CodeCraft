@@ -142,6 +142,24 @@ export const Login = () => {
                 </>
               )}
             </button>
+
+            <div className="mt-4 p-4 bg-primary/5 border border-primary/20 rounded-xl">
+              <p className="text-xs text-center text-muted-foreground mb-2 font-medium">Credenciales de prueba para el Demo:</p>
+              <div className="flex flex-col gap-1 text-sm text-center font-mono">
+                <span className="text-foreground">admin@farmasys.com</span>
+                <span className="text-foreground">admin123</span>
+              </div>
+              <button 
+                type="button"
+                onClick={() => {
+                  setEmail('admin@farmasys.com');
+                  setPassword('admin123');
+                }}
+                className="w-full mt-3 text-xs font-bold text-primary hover:underline"
+              >
+                Auto-llenar credenciales
+              </button>
+            </div>
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-8">
