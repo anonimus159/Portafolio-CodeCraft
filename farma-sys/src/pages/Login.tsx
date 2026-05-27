@@ -142,6 +142,14 @@ export const Login = () => {
                 </>
               )}
             </button>
+
+            <div className="mt-4 text-center">
+              <p className="text-xs text-muted-foreground mb-1">Credenciales de prueba para el Demo:</p>
+              <div className="inline-flex flex-col items-center gap-0.5 px-4 py-2 bg-primary/5 border border-primary/10 rounded-lg">
+                <span className="text-xs font-mono text-foreground font-medium">admin@farmasys.com</span>
+                <span className="text-xs font-mono text-foreground font-medium">admin123</span>
+              </div>
+            </div>
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-8">
