@@ -1,0 +1,94 @@
+import { Package, Search, Filter, AlertCircle, ArrowDown, ArrowUp } from 'lucide-react';
+import clsx from 'clsx';
+
+const inventoryData = [
+  { id: 1, name: 'Canal de Res (Premium)', category: 'Res Entera', stock: 1250.5, minStock: 500, unit: 'KG', status: 'ok', trend: 'down' },
+  { id: 2, name: 'Lomo Fino de Res', category: 'Cortes Res', stock: 45.2, minStock: 50, unit: 'KG', status: 'warning', trend: 'down' },
+  { id: 3, name: 'Costilla de Cerdo', category: 'Cortes Cerdo', stock: 120.0, minStock: 80, unit: 'KG', status: 'ok', trend: 'up' },
+  { id: 4, name: 'Pechuga de Pollo', category: 'Aves', stock: 35.5, minStock: 100, unit: 'KG', status: 'critical', trend: 'down' },
+  { id: 5, name: 'Hueso Blanco', category: 'Subproductos', stock: 450.0, minStock: 100, unit: 'KG', status: 'ok', trend: 'up' },
+];
+
+export const Inventory = () => {
+  return (
+    <div className="space-y-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+        <div>
+          <h1 className="text-3xl font-bold text-foreground tracking-tight">Inventario de Bodega</h1>
+          <p className="text-muted-foreground mt-1">Control de stock en tiempo real por peso (KG).</p>
+        </div>
+        <div className="flex gap-2">
+          <button className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
+            <Package className="w-4 h-4" /> Registrar Ingreso
+          </button>
+        </div>
+      </div>
+
+      <div className="glass rounded-2xl border border-border overflow-hidden">
+        <div className="p-4 border-b border-border/50 flex gap-4">
+          <div className="relative flex-1">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+            <input 
+              type="text" 
+              placeholder="Buscar producto, corte o lote..." 
+              className="w-full bg-background border border-border rounded-xl py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+            />
+          </div>
+          <button className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-xl border border-border flex items-center gap-2">
+            <Filter className="w-4 h-4" /> Filtros
+          </button>
+        </div>
+
+        <div className="overflow-x-auto">
+          <table className="w-full text-left border-collapse">
+            <thead>
+              <tr className="bg-muted/30 border-b border-border/50">
+                <th className="p-4 font-medium text-muted-foreground text-sm">Producto</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm">Categoría</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm text-right">Stock Actual</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm text-right">Mínimo</th>
+                <th className="p-4 font-medium text-muted-foreground text-sm text-center">Estado</th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-border/50">
+              {inventoryData.map((item) => (
+                <tr key={item.id} className="hover:bg-muted/20 transition-colors">
+                  <td className="p-4">
+                    <p className="font-bold text-foreground">{item.name}</p>
+                    <p className="text-xs text-muted-foreground">ID: {item.id.toString().padStart(4, '0')}</p>
+                  </td>
+                  <td className="p-4">
+                    <span className="px-2.5 py-1 rounded-md bg-muted text-xs font-medium text-muted-foreground">
+                      {item.category}
+                    </span>
+                  </td>
+                  <td className="p-4 text-right">
+                    <div className="flex items-center justify-end gap-2">
+                      {item.trend === 'up' ? <ArrowUp className="w-3 h-3 text-green-500" /> : <ArrowDown className="w-3 h-3 text-red-500" />}
+                      <span className="text-xl font-bold text-foreground">{item.stock.toFixed(1)}</span>
+                      <span className="text-xs text-muted-foreground">{item.unit}</span>
+                    </div>
+                  </td>
+                  <td className="p-4 text-right">
+                    <span className="font-medium text-muted-foreground">{item.minStock} {item.unit}</span>
+                  </td>
+                  <td className="p-4 text-center">
+                    <div className={clsx(
+                      "inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold",
+                      item.status === 'ok' && "bg-green-500/10 text-green-500",
+                      item.status === 'warning' && "bg-yellow-500/10 text-yellow-500",
+                      item.status === 'critical' && "bg-red-500/10 text-red-500 border border-red-500/20"
+                    )}>
+                      {item.status === 'critical' && <AlertCircle className="w-3 h-3" />}
+                      {item.status === 'ok' ? 'Normal' : item.status === 'warning' ? 'Bajo' : 'Crítico'}
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  );
+};

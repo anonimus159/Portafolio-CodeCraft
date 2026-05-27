@@ -16,7 +16,8 @@ import {
   Shield,
   Activity,
   Terminal,
-  Pill
+  Pill,
+  Beef
 } from 'lucide-react';
 import { FaGithub, FaInstagram, FaTwitter, FaLinkedin } from 'react-icons/fa';
 
@@ -179,6 +180,15 @@ const SectionTitle = ({ title, subtitle }) => (
 // --- Data ---
 
 const projects = [
+  {
+    title: 'CarniPOS',
+    description: 'Sistema B2B para frigoríficos y carnicerías. Control de merma, desposte, rendimiento e integración de balanza USB.',
+    tech: ['React', 'Electron', 'Node.js', 'Vite'],
+    color: 'from-red-600/40 to-black/40',
+    icon: <Beef className="w-6 h-6 text-red-500" />,
+    image: '/assets/carni_pos.jpg',
+    demoUrl: '/demos/carni-pos/'
+  },
   {
     title: 'POS Panadería',
     description: 'Punto de venta especializado para panaderías con gestión de recetas, inventario y facturación.',
