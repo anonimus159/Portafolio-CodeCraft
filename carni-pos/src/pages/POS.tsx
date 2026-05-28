@@ -14,16 +14,11 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 
-// Simulated Meat Products
-const products = [
-  { id: 1, name: 'Lomo Fino Premium', price: 32000, category: 'Res', code: 'RES-001' },
-  { id: 2, name: 'Costilla de Res', price: 18500, category: 'Res', code: 'RES-002' },
-  { id: 3, name: 'Panceta de Cerdo', price: 22000, category: 'Cerdo', code: 'CER-001' },
-  { id: 4, name: 'Salmón Fresco', price: 45000, category: 'Pescados', code: 'PES-001' },
-  { id: 5, name: 'Filete Tilapia', price: 16000, category: 'Pescados', code: 'PES-002' },
-];
+import { useStore } from '../store/useStore';
 
 export const POS = () => {
+  const products = useStore(state => state.inventory);
+  const processSale = useStore(state => state.processSale);
   const [cart, setCart] = useState<any[]>([]);
   const [selectedProduct, setSelectedProduct] = useState<any | null>(null);
   const [scaleWeight, setScaleWeight] = useState<number>(0);
@@ -71,11 +66,22 @@ export const POS = () => {
 
   const cartTotal = cart.reduce((sum, item) => sum + item.subtotal, 0);
 
-  const handleCheckout = () => {
+  const handleCheckout = (method: 'cash' | 'card' | 'transfer') => {
     setShowCheckout(true);
+    
+    // Process the sale in the global store
+    const saleItems = cart.map(item => ({
+      id: item.product.id,
+      quantity: item.weight,
+      price: item.appliedPrice
+    }));
+    
+    processSale(saleItems, method, cartTotal);
+    
     setTimeout(() => {
       setCart([]);
       setShowCheckout(false);
+      toast.success('Venta registrada con éxito en Caja e Inventario');
     }, 2500);
   };
 
@@ -171,7 +177,7 @@ export const POS = () => {
                 )}
               >
                 <div className="flex justify-between items-start mb-2 relative z-10">
-                  <span className="text-xs font-medium text-muted-foreground">{product.code}</span>
+                  <span className="text-xs font-medium text-muted-foreground">{product.id}</span>
                   <span className="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded-full bg-muted text-foreground">
                     {product.category}
                   </span>
@@ -231,7 +237,7 @@ export const POS = () => {
                   </div>
                   <div className="flex justify-between items-center text-xs text-muted-foreground">
                     <span>{item.weight.toFixed(3)} KG x ${item.appliedPrice.toLocaleString()}</span>
-                    <span>{item.product.code}</span>
+                    <span>{item.product.id}</span>
                   </div>
                   <button 
                     onClick={() => setCart(cart.filter(i => i.id !== item.id))}
@@ -266,17 +272,25 @@ export const POS = () => {
           ) : (
             <div className="grid grid-cols-2 gap-3">
               <button 
-                onClick={handleCheckout}
+                onClick={() => handleCheckout('cash')}
                 disabled={cart.length === 0}
                 className="col-span-2 py-3 bg-primary text-white font-bold rounded-xl transition-all hover:bg-primary/90 flex justify-center items-center gap-2 disabled:opacity-50"
               >
-                Cobrar e Imprimir
+                Cobrar Efectivo e Imprimir
                 <Printer className="w-4 h-4" />
               </button>
-              <button onClick={() => toast.info("Activando Datáfono para cobro con Tarjeta...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
+              <button 
+                onClick={() => { toast.info("Procesando Datáfono..."); handleCheckout('card'); }} 
+                disabled={cart.length===0} 
+                className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50"
+              >
                 <CreditCard className="w-4 h-4" /> Tarjeta
               </button>
-              <button onClick={() => toast.info("Generando código QR dinámico...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
+              <button 
+                onClick={() => { toast.info("Aprobando Nequi/QR..."); handleCheckout('transfer'); }} 
+                disabled={cart.length===0} 
+                className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50"
+              >
                 <QrCode className="w-4 h-4" /> Nequi / QR
               </button>
             </div>

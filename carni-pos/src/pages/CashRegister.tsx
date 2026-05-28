@@ -16,36 +16,31 @@ import {
 import clsx from 'clsx';
 import { toast } from 'sonner';
 
+import { useStore } from '../store/useStore';
+
 export const CashRegister = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const { cashRegister, transactions, openRegister, closeRegister } = useStore();
+  const isOpen = cashRegister.isOpen;
   const [baseAmount, setBaseAmount] = useState(150000);
   const [showCloseModal, setShowCloseModal] = useState(false);
   
-  // Mock data for transactions
-  const transactions = [
-    { id: 'TRX-001', time: '08:30 AM', type: 'sale', method: 'cash', amount: 45000, desc: 'Venta Mostrador' },
-    { id: 'TRX-002', time: '09:15 AM', type: 'sale', method: 'card', amount: 120000, desc: 'Venta Mayorista' },
-    { id: 'TRX-003', time: '10:05 AM', type: 'expense', method: 'cash', amount: 25000, desc: 'Pago Insumos (Bolsas)' },
-    { id: 'TRX-004', time: '11:20 AM', type: 'sale', method: 'transfer', amount: 85000, desc: 'Venta Domicilio (Nequi)' },
-  ];
-
   const totals = {
-    cash: baseAmount + 45000 - 25000,
-    card: 120000,
-    transfer: 85000,
+    cash: isOpen ? cashRegister.baseAmount + transactions.filter(t => t.method === 'cash' && t.type === 'sale').reduce((sum, t) => sum + t.amount, 0) - transactions.filter(t => t.method === 'cash' && t.type === 'expense').reduce((sum, t) => sum + t.amount, 0) : 0,
+    card: isOpen ? transactions.filter(t => t.method === 'card' && t.type === 'sale').reduce((sum, t) => sum + t.amount, 0) : 0,
+    transfer: isOpen ? transactions.filter(t => t.method === 'transfer' && t.type === 'sale').reduce((sum, t) => sum + t.amount, 0) : 0,
   };
   
   const grandTotal = totals.cash + totals.card + totals.transfer;
 
   const handleOpenRegister = () => {
-    setIsOpen(true);
+    openRegister(baseAmount);
     toast.success('Caja abierta exitosamente', {
       description: `Base inicial: $${baseAmount.toLocaleString()}`
     });
   };
 
   const handleCloseRegister = () => {
-    setIsOpen(false);
+    closeRegister();
     setShowCloseModal(false);
     toast.success('Corte Z realizado', {
       description: 'Caja cerrada y reporte enviado a gerencia.'
@@ -124,7 +119,7 @@ export const CashRegister = () => {
                 <h3 className="text-sm font-medium text-muted-foreground mb-4">Total en Caja (Efectivo)</h3>
                 <div className="text-4xl font-black text-foreground mb-2">${totals.cash.toLocaleString()}</div>
                 <div className="text-sm text-green-500 font-medium flex items-center gap-1">
-                  <ArrowUpRight className="w-4 h-4" /> +${(45000 - 25000).toLocaleString()} hoy
+                  <ArrowUpRight className="w-4 h-4" /> +${(totals.cash - cashRegister.baseAmount).toLocaleString()} hoy
                 </div>
               </div>
               
@@ -179,14 +174,18 @@ export const CashRegister = () => {
               
               <div className="flex-1 overflow-y-auto p-4 custom-scrollbar">
                 <div className="space-y-2">
-                  {transactions.map((trx) => (
+                  {transactions.length === 0 ? (
+                    <div className="text-center p-8 text-muted-foreground">No hay transacciones hoy.</div>
+                  ) : transactions.map((trx) => (
                     <div key={trx.id} className="flex items-center justify-between p-4 rounded-xl bg-background/50 border border-border hover:bg-muted/30 transition-colors">
                       <div className="flex items-center gap-4">
                         <div className={clsx(
                           "w-10 h-10 rounded-full flex items-center justify-center border",
-                          trx.type === 'sale' ? "bg-green-500/10 border-green-500/20 text-green-500" : "bg-red-500/10 border-red-500/20 text-red-500"
+                          trx.type === 'sale' ? "bg-green-500/10 border-green-500/20 text-green-500" : 
+                          trx.type === 'opening' ? "bg-blue-500/10 border-blue-500/20 text-blue-500" : "bg-red-500/10 border-red-500/20 text-red-500"
                         )}>
-                          {trx.type === 'sale' ? <ArrowUpRight className="w-5 h-5" /> : <ArrowDownRight className="w-5 h-5" />}
+                          {trx.type === 'sale' ? <ArrowUpRight className="w-5 h-5" /> : 
+                           trx.type === 'opening' ? <Unlock className="w-5 h-5" /> : <ArrowDownRight className="w-5 h-5" />}
                         </div>
                         <div>
                           <h4 className="font-bold text-foreground text-sm">{trx.desc}</h4>
@@ -202,12 +201,12 @@ export const CashRegister = () => {
                       <div className="text-right">
                         <p className={clsx(
                           "font-black text-lg",
-                          trx.type === 'sale' ? "text-foreground" : "text-red-500"
+                          trx.type === 'sale' || trx.type === 'opening' ? "text-foreground" : "text-red-500"
                         )}>
-                          {trx.type === 'sale' ? '+' : '-'}${trx.amount.toLocaleString()}
+                          {trx.type === 'sale' || trx.type === 'opening' ? '+' : '-'}${trx.amount.toLocaleString()}
                         </p>
                         <p className="text-xs text-muted-foreground uppercase font-medium mt-1">
-                          {trx.method === 'cash' ? 'Efectivo' : trx.method === 'card' ? 'Tarjeta' : 'Nequi'}
+                          {trx.method === 'cash' ? 'Efectivo' : trx.method === 'card' ? 'Tarjeta' : trx.method === 'transfer' ? 'Nequi' : 'NA'}
                         </p>
                       </div>
                     </div>

@@ -10,20 +10,28 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 import { toast } from 'sonner';
+import { useStore } from '../store/useStore';
 
 export const Production = () => {
+  const processProduction = useStore(state => state.processProduction);
   const [selectedRecipe, setSelectedRecipe] = useState<string | null>(null);
   const [quantity, setQuantity] = useState(5);
 
   const recipes = [
-    { id: 'R1', name: 'Hamburguesa Premium', input: 'Carne Molida Especial', ratio: 1.2, outputUnit: 'Unidades (150g)', type: 'Procesado' },
-    { id: 'R2', name: 'Chorizo de Cerdo', input: 'Recorte de Cerdo + Grasa', ratio: 0.85, outputUnit: 'KG', type: 'Embutido' },
-    { id: 'R3', name: 'Carne Aliñada', input: 'Pulpa de Res', ratio: 1.05, outputUnit: 'KG', type: 'Preparado' },
+    { id: 'R1', name: 'Hamburguesa Premium', input: 'Carne Molida', ratio: 1.2, outputUnit: 'Unidades', type: 'Procesado' },
+    { id: 'R2', name: 'Chorizo Santarrosano', input: 'Panceta de Cerdo', ratio: 0.85, outputUnit: 'KG', type: 'Embutido' },
+    { id: 'R3', name: 'Carne Molida Especial', input: 'Lomo de Res', ratio: 1.05, outputUnit: 'KG', type: 'Preparado' },
   ];
 
   const handleProcess = () => {
+    const r = recipes.find(x => x.id === selectedRecipe);
+    if (!r) return;
+    
+    const inputWeight = quantity / r.ratio;
+    processProduction(r.name, r.input, inputWeight, r.outputUnit, quantity);
+    
     toast.success('Lote de producción registrado', {
-      description: `Se han generado ${quantity} unidades/kg de ${recipes.find(r => r.id === selectedRecipe)?.name}. Inventario actualizado.`,
+      description: `Se han generado ${quantity} ${r.outputUnit} de ${r.name}. Inventario actualizado.`,
     });
     setSelectedRecipe(null);
     setQuantity(5);
