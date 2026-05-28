@@ -1,10 +1,12 @@
+import { Bell, Search, User, Menu } from 'lucide-react';
 
-import { Bell, Search, User } from 'lucide-react';
-
-export const Topbar = () => {
+export const Topbar = ({ onMenuClick }: { onMenuClick?: () => void }) => {
   return (
-    <header className="h-16 flex items-center justify-between px-6 border-b border-border bg-card/50 glass z-10 sticky top-0">
-      <div className="flex-1 flex items-center">
+    <header className="h-16 flex items-center justify-between px-4 lg:px-6 border-b border-border bg-card/50 glass z-10 sticky top-0">
+      <div className="flex-1 flex items-center gap-4">
+        <button onClick={onMenuClick} className="lg:hidden p-2 -ml-2 text-muted-foreground hover:text-foreground transition-colors">
+          <Menu className="w-6 h-6" />
+        </button>
         <div className="relative w-full max-w-md hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input 

@@ -39,8 +39,8 @@ export const Inventory = () => {
           </button>
         </div>
 
-        <div className="overflow-x-auto">
-          <table className="w-full text-left border-collapse">
+        <div className="overflow-x-auto w-full custom-scrollbar">
+          <table className="w-full text-left border-collapse min-w-[800px]">
             <thead>
               <tr className="bg-muted/30 border-b border-border/50">
                 <th className="p-4 font-medium text-muted-foreground text-sm">Producto</th>

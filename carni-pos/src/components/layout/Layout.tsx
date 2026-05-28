@@ -1,19 +1,22 @@
+import { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
 import { Topbar } from './Topbar';
 import { motion } from 'framer-motion';
 
 export const Layout = () => {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
   return (
     <div className="flex h-screen overflow-hidden bg-background">
-      <Sidebar />
-      <div className="flex-1 flex flex-col relative">
+      <Sidebar isOpen={isMobileMenuOpen} onClose={() => setIsMobileMenuOpen(false)} />
+      <div className="flex-1 flex flex-col relative w-full overflow-hidden">
         {/* Glow effect in background for industrial premium feel */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
         
-        <Topbar />
+        <Topbar onMenuClick={() => setIsMobileMenuOpen(true)} />
         
-        <main className="flex-1 overflow-x-hidden overflow-y-auto z-0 p-6">
+        <main className="flex-1 overflow-x-hidden overflow-y-auto z-0 p-4 lg:p-6 w-full">
           <Outlet />
         </main>
       </div>

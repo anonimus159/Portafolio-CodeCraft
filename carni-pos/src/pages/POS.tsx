@@ -79,7 +79,7 @@ export const POS = () => {
   };
 
   return (
-    <div className="h-[calc(100vh-8rem)] flex gap-6">
+    <div className="flex flex-col lg:flex-row gap-6 min-h-[calc(100vh-8rem)]">
       {/* Left Panel: Products & Scale */}
       <div className="flex-1 flex flex-col gap-6">
         {/* Hardware Status / Scale Reader */}
@@ -188,7 +188,7 @@ export const POS = () => {
       </div>
 
       {/* Right Panel: Cart/Ticket */}
-      <div className="w-96 glass rounded-2xl border border-border flex flex-col overflow-hidden">
+      <div className="w-full lg:w-96 glass rounded-2xl border border-border flex flex-col overflow-hidden">
         <div className="flex justify-between items-center bg-muted/20 p-4 border-b border-border/50">
           <h2 className="font-bold text-lg flex items-center gap-2">
             <ShoppingCart className="w-5 h-5 text-primary" />

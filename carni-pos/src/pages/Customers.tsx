@@ -26,9 +26,9 @@ export const Customers = () => {
         </button>
       </div>
 
-      <div className="flex flex-1 gap-6 min-h-0">
+      <div className="flex flex-col lg:flex-row flex-1 gap-6 min-h-0">
         {/* Left Panel: Customer List */}
-        <div className="flex-1 glass rounded-2xl border border-border flex flex-col overflow-hidden">
+        <div className="flex-1 glass rounded-2xl border border-border flex flex-col overflow-hidden min-h-[400px]">
           <div className="p-4 border-b border-border/50 bg-muted/20">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
@@ -80,7 +80,7 @@ export const Customers = () => {
         </div>
 
         {/* Right Panel: Customer Details */}
-        <div className="w-[450px] glass rounded-2xl border border-border flex flex-col overflow-hidden bg-card/30">
+        <div className="w-full lg:w-[450px] glass rounded-2xl border border-border flex flex-col overflow-hidden bg-card/30 min-h-[500px]">
           <AnimatePresence mode="wait">
             {selectedCustomer ? (
               <motion.div
