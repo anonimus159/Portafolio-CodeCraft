@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Usb, 
@@ -272,10 +273,10 @@ export const POS = () => {
                 Cobrar e Imprimir
                 <Printer className="w-4 h-4" />
               </button>
-              <button onClick={() => alert("Activando Datáfono para cobro con Tarjeta...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
+              <button onClick={() => toast.info("Activando Datáfono para cobro con Tarjeta...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
                 <CreditCard className="w-4 h-4" /> Tarjeta
               </button>
-              <button onClick={() => alert("Generando código QR dinámico...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
+              <button onClick={() => toast.info("Generando código QR dinámico...")} disabled={cart.length===0} className="py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border flex justify-center items-center gap-2 disabled:opacity-50">
                 <QrCode className="w-4 h-4" /> Nequi / QR
               </button>
             </div>

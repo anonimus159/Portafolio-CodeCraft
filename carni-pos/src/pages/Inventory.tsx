@@ -1,4 +1,5 @@
 import { Package, Search, Filter, AlertCircle, ArrowDown, ArrowUp } from 'lucide-react';
+import { toast } from 'sonner';
 import clsx from 'clsx';
 
 const inventoryData = [
@@ -18,7 +19,7 @@ export const Inventory = () => {
           <p className="text-muted-foreground mt-1">Control de stock en tiempo real por peso (KG).</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => alert("Abriendo formulario para escanear código de barras de canal/lote...")} className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
+          <button onClick={() => toast.info("Abriendo formulario para escanear código de barras de canal/lote...")} className="px-4 py-2 bg-primary text-primary-foreground text-sm font-medium rounded-lg transition-colors flex items-center gap-2">
             <Package className="w-4 h-4" /> Registrar Ingreso
           </button>
         </div>
@@ -34,7 +35,7 @@ export const Inventory = () => {
               className="w-full bg-background border border-border rounded-xl py-2 pl-9 pr-4 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
             />
           </div>
-          <button onClick={() => alert("Abriendo panel avanzado de filtros y búsqueda por categoría...")} className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-xl border border-border flex items-center gap-2">
+          <button onClick={() => toast.info("Abriendo panel avanzado de filtros y búsqueda por categoría...")} className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-xl border border-border flex items-center gap-2">
             <Filter className="w-4 h-4" /> Filtros
           </button>
         </div>

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Users, Search, Star, Crown, History, ShoppingBag, ArrowUpRight } from 'lucide-react';
 import clsx from 'clsx';
@@ -21,7 +22,7 @@ export const Customers = () => {
           <h1 className="text-3xl font-bold text-foreground tracking-tight">Gestión de Clientes</h1>
           <p className="text-muted-foreground mt-1">Historial de compras y fidelización (B2B/B2C).</p>
         </div>
-        <button onClick={() => alert("Abriendo formulario para crear nuevo cliente B2B/B2C...")} className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-xl shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
+        <button onClick={() => toast.info("Abriendo formulario para crear nuevo cliente B2B/B2C...")} className="px-4 py-2 bg-primary hover:bg-primary/90 text-primary-foreground text-sm font-medium rounded-xl shadow-lg shadow-primary/20 flex items-center gap-2 transition-all">
           <Users className="w-4 h-4" /> Nuevo Cliente
         </button>
       </div>
@@ -132,7 +133,7 @@ export const Customers = () => {
                     </h3>
                     <div className="space-y-3">
                       {[1, 2, 3].map((_, i) => (
-                        <div key={i} onClick={() => alert(`Cargando copia del Ticket #00${894 - i} en PDF...`)} className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border hover:border-primary/30 transition-colors cursor-pointer group">
+                        <div key={i} onClick={() => toast.success(`Cargando copia del Ticket #00${894 - i} en PDF...`)} className="flex items-center justify-between p-3 rounded-lg bg-muted/20 border border-border hover:border-primary/30 transition-colors cursor-pointer group">
                           <div className="flex items-center gap-3">
                             <div className="w-8 h-8 rounded-full bg-background border border-border flex items-center justify-center">
                               <ShoppingBag className="w-4 h-4 text-muted-foreground" />

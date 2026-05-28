@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion';
+import { toast } from 'sonner';
 import { 
+  DollarSign, 
   TrendingUp, 
   TrendingDown, 
   Scale, 
-  Droplets, 
-  DollarSign, 
   AlertTriangle,
+  Droplets,
   Lightbulb
 } from 'lucide-react';
 import { 
@@ -78,7 +79,7 @@ export const Dashboard = () => {
           <p className="text-muted-foreground mt-1">Resumen de operaciones del frigorífico hoy.</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => alert("Exportando reporte en PDF...")} className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border transition-colors">
+          <button onClick={() => toast.success("Exportando reporte en PDF...")} className="px-4 py-2 bg-muted hover:bg-muted/80 text-foreground text-sm font-medium rounded-lg border border-border transition-colors">
             Exportar Reporte
           </button>
         </div>
@@ -252,7 +253,7 @@ export const Dashboard = () => {
                 <span className="text-xs font-bold text-red-500 bg-red-500/10 px-2 py-1 rounded">Urgente</span>
               </div>
               <p className="text-xs text-muted-foreground mb-3">Lote P-9921 alcanza su 6to día. Sugerimos aplicar <strong>-10% descuento</strong> táctico hoy para rotar los 35.5 KG restantes.</p>
-              <button onClick={() => alert("Promoción de -10% aplicada al Lote P-9921. Redirigiendo al POS...")} className="text-xs font-bold text-primary hover:underline">Aplicar en POS →</button>
+              <button onClick={() => toast.success("Promoción de -10% aplicada al Lote P-9921. Redirigiendo al POS...")} className="text-xs font-bold text-primary hover:underline">Aplicar en POS →</button>
             </div>
 
             <div className="bg-background rounded-xl p-4 border border-border">

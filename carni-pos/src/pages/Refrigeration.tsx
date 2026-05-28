@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'sonner';
 import { motion } from 'framer-motion';
 import { ThermometerSnowflake, AlertTriangle, CheckCircle2, History, Droplets, Clock, Plus, PenTool } from 'lucide-react';
 import clsx from 'clsx';
@@ -81,7 +82,7 @@ export const Refrigeration = () => {
       event: 'Se ha solicitado revisión técnica al departamento de mantenimiento.',
       type: 'info'
     }, ...prev]);
-    alert(`Revisión técnica solicitada para: ${zoneName}`);
+    toast.error(`Revisión técnica solicitada para: ${zoneName}`);
   };
 
   return (

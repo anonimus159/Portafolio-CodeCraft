@@ -9,15 +9,21 @@ import {
   Beef,
   LogOut,
   Users,
-  X
+  X,
+  Wallet,
+  ChefHat,
+  Truck
 } from 'lucide-react';
 import clsx from 'clsx';
 
 const menuItems = [
   { icon: LayoutDashboard, label: 'Dashboard Proactivo', path: '/dashboard' },
   { icon: MonitorSpeaker, label: 'Punto de Venta (POS)', path: '/pos' },
+  { icon: Wallet, label: 'Caja y Transacciones', path: '/cash-register' },
   { icon: Scissors, label: 'Cortes y Rendimiento', path: '/cuts' },
+  { icon: ChefHat, label: 'Producción y Derivados', path: '/production' },
   { icon: Package, label: 'Inventario y Trazabilidad', path: '/inventory' },
+  { icon: Truck, label: 'Proveedores y Compras', path: '/suppliers' },
   { icon: ThermometerSnowflake, label: 'Refrigeración', path: '/refrigeration' },
   { icon: Users, label: 'Gestión de Clientes', path: '/customers' },
 ];
